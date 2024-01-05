@@ -19,14 +19,13 @@ export default function RootLayout({
     <html lang="ja">
       <body className={inter.className}>
         <div className="h-screen">
-          <main className="p-4 h-[90%] flex justify-around">
-            <div className="flex flex-col items-center w-2/3 justify-center">
-              {children}
-            </div>
+          <main className="p-24 h-[90%] flex justify-around">
+            <div className="w-2/3 flex items-center">{children}</div>
             <div className="flex flex-col items-start w-1/3 justify-center gap-8">
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-bold mb-1">Projects</h3>
-                <CustomLink href="/oogiri">oogiri</CustomLink>
+                <CustomLink href="/projects/oogiri">oogiri-bot</CustomLink>
+                <CustomLink href="/projects/koedame">koedame</CustomLink>
               </div>
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-bold mb-1">Links</h3>
