@@ -21,9 +21,9 @@ export default function RootLayout({
     <html lang="ja">
       <body className={inter.className}>
         <div className="h-screen">
-          <main className="p-24 h-[90%] flex justify-around">
-            <div className="w-2/3 flex items-center">{children}</div>
-            <div className="flex flex-col items-start w-1/3 justify-center gap-8">
+          <main className="p-24 h-[90%] flex justify-around gap-2">
+            <div className="w-3/4 flex items-center">{children}</div>
+            <div className="flex flex-col items-start w-1/4 justify-center gap-8">
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-bold mb-1">Projects</h3>
                 <CustomLink href="/projects/oogiri">oogiri-bot</CustomLink>
