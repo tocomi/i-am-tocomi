@@ -6,3 +6,29 @@ body {
   @apply bg-gray-900;
   @apply text-gray-100;
 }
+
+.hover-underline-animation {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.hover-underline-animation::after {
+  @apply bg-sky-400;
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  height: 2px;
+  transition-property: left, right;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
+}
+
+.hover-underline-animation:hover::after {
+  left: 0;
+  right: 0;
+}
