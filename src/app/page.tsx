@@ -5,6 +5,7 @@ export default function Home() {
       <h3 className="text-2xl font-bold">@tocomi</h3>
       <p className="text-lg">Web Engineer</p>
       <p className="text-lg">Techtouch, Inc.</p>
+      <p className="text-lg">笑いの取れるエンジニアを目指しています🗿</p>
     </div>
   )
 }
