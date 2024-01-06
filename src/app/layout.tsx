@@ -1,9 +1,9 @@
 import { CustomLink } from '@/components'
 import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
+import { Instrument_Sans } from 'next/font/google'
 import './globals.css'
 
-const inter = Montserrat({
+const font = Instrument_Sans({
   subsets: ['latin'],
 })
 
@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>
+      <body className={font.className}>
         <div className="flex items-center justify-center sm:h-screen">
           <main className="flex max-w-[800px] flex-col justify-between gap-12 p-8 sm:flex-row sm:gap-8">
             <div className="flex max-w-[480px] items-center justify-center md:w-[480px]">
