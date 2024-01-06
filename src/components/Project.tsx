@@ -23,12 +23,12 @@ export const Project: FC<Props> = memo(
               <p key={description}>{description}</p>
             ))}
           </div>
-          <div className="flex flex-row gap-2 flex-wrap">
+          <div className="flex flex-row flex-wrap gap-2">
             {stacks.map((stack) => (
               <Badge key={stack}>{stack}</Badge>
             ))}
           </div>
-          <div className="flex flex-row gap-4 flex-wrap">
+          <div className="flex flex-row flex-wrap gap-4">
             {links.map((link) => (
               <CustomLink key={link.url} external href={link.url}>
                 {link.title}

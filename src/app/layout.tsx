@@ -20,14 +20,14 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <div className="sm:h-screen flex justify-center items-center">
-          <main className="p-8 sm:p-24: sm:h-[90%] flex flex-col sm:flex-row justify-between gap-12 sm:gap-4 max-w-[800px]">
-            <div className="flex items-center justify-center max-w-[480px]">
+        <div className="flex items-center justify-center sm:h-screen">
+          <main className="flex max-w-[800px] flex-col justify-between gap-12 p-8 sm:h-[90%] sm:flex-row sm:gap-4 sm:p-24">
+            <div className="flex max-w-[480px] items-center justify-center">
               {children}
             </div>
-            <div className="flex flex-1 flex-col items-start justify-center gap-8 min-w-44">
+            <div className="flex min-w-44 flex-1 flex-col items-start justify-center gap-8">
               <div className="flex flex-col gap-2">
-                <h3 className="text-2xl font-bold mb-1">Projects</h3>
+                <h3 className="mb-1 text-2xl font-bold">Projects</h3>
                 <CustomLink href="/projects/oogiri">oogiri-bot</CustomLink>
                 <CustomLink href="/projects/oogiri-history">
                   oogiri-history
@@ -38,7 +38,7 @@ export default function RootLayout({
                 <CustomLink href="/projects/koedame">koedame</CustomLink>
               </div>
               <div className="flex flex-col gap-2">
-                <h3 className="text-2xl font-bold mb-1">Links</h3>
+                <h3 className="mb-1 text-2xl font-bold">Links</h3>
                 <CustomLink href="https://i-am-tocomi.super.site" external>
                   Blog
                 </CustomLink>

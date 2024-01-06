@@ -15,7 +15,7 @@ export const CustomLink = ({
       href={href}
       target={external ? '_blank' : '_self'}
       rel={external ? 'noopener noreferrer' : undefined}
-      className="text-xl w-fit text-sky-200 hover-underline-animation"
+      className="hover-underline-animation w-fit text-xl text-sky-200"
     >
       {children}
     </Link>

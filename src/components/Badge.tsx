@@ -1,5 +1,5 @@
 export const Badge = ({ children }: { children: React.ReactNode }) => (
-  <span className="bg-gray-500 text-gray-200 px-2 py-1 rounded-md">
+  <span className="rounded-md bg-gray-500 px-2 py-1 text-gray-200">
     {children}
   </span>
 )
