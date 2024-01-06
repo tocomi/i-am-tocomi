@@ -32,6 +32,9 @@ export default function RootLayout({
                 <CustomLink href="/projects/oogiri-history">
                   oogiri-history
                 </CustomLink>
+                <CustomLink href="/projects/umaaji-analyzer">
+                  umaaji-analyzer
+                </CustomLink>
                 <CustomLink href="/projects/koedame">koedame</CustomLink>
               </div>
               <div className="flex flex-col gap-2">

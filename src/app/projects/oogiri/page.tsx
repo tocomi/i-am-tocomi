@@ -1,9 +1,10 @@
 import { Project } from '@/components'
 
 const descriptions = [
-  'みんなで大喜利ができるSlackBotです🤖',
+  'みんなで大喜利ができる SlackBot です🤖',
   '社内でのコミュニケーションツールの一環として作りました。',
   '匿名で参加できて、ウケた回答だけ名前が開示されるから安心！',
+  'Slack の Bolt というフレームワークを使って Bot を作成しています。',
 ]
 
 const stacks = ['Slack Bolt', 'Node.js', 'Typescript', 'Firebase', 'Heroku']
@@ -24,5 +25,12 @@ const links = [
 ]
 
 export default function OogiriBotPage() {
-  return <Project descriptions={descriptions} stacks={stacks} links={links} />
+  return (
+    <Project
+      title="oogiri-bot"
+      descriptions={descriptions}
+      stacks={stacks}
+      links={links}
+    />
+  )
 }

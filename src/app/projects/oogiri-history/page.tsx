@@ -3,7 +3,7 @@ import { Project } from '@/components'
 const descriptions = [
   'oogiri-bot の結果確認ページです👺',
   '社内向けなのでログインページのみの公開です🙏',
-  'ただログインページが一番力作なのでそこさえ見てもらえたら満足です😂',
+  'データは頻繁に更新されるものではないので、ISR を使ってレンダリングの高速化を図っています。',
 ]
 
 const stacks = ['Next.js', 'TypeScript', 'Panda CSS', 'Vercel']
@@ -16,5 +16,12 @@ const links = [
 ]
 
 export default function OogiriHistoryPage() {
-  return <Project descriptions={descriptions} stacks={stacks} links={links} />
+  return (
+    <Project
+      title="oogiri-history"
+      descriptions={descriptions}
+      stacks={stacks}
+      links={links}
+    />
+  )
 }
