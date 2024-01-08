@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'I am tocomi',
     description: "tocomi's portfolio site",
+    url: 'https://tocomi.net',
+    type: 'website',
     images: [
       {
         url: 'https://tocomi.net/api/og',
