@@ -8,8 +8,20 @@ const font = Instrument_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'I am tocomi !!',
+  title: 'I am tocomi',
   description: "tocomi's portfolio site",
+  openGraph: {
+    title: 'I am tocomi',
+    description: "tocomi's portfolio site",
+    images: [
+      {
+        url: 'https://tocomi.net/api/og',
+        width: 1200,
+        height: 630,
+        alt: 'I am tocomi',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
