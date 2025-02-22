@@ -41,7 +41,7 @@ export default function RootLayout({
             </div>
             <div className="flex min-w-44 flex-1 flex-col items-start justify-center gap-8">
               <div className="flex flex-col gap-2">
-                <h3 className="mb-1 text-2xl font-bold">Projects</h3>
+                <h3 className="mb-1 font-bold text-2xl">Projects</h3>
                 <CustomLink href="/projects/oogiri">oogiri-bot</CustomLink>
                 <CustomLink href="/projects/oogiri-history">
                   oogiri-history
@@ -52,7 +52,7 @@ export default function RootLayout({
                 <CustomLink href="/projects/koedame">koedame</CustomLink>
               </div>
               <div className="flex flex-col gap-2">
-                <h3 className="mb-1 text-2xl font-bold">Links</h3>
+                <h3 className="mb-1 font-bold text-2xl">Links</h3>
                 <CustomLink href="https://i-am-tocomi.super.site" external>
                   Blog
                 </CustomLink>

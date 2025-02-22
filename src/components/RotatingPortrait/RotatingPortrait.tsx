@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './RotatingPortrait.css'
 
 export const RotatingPortrait = () => {
@@ -18,7 +18,7 @@ export const RotatingPortrait = () => {
   }, [isRotating])
 
   return (
-    <button className="image-container" onClick={toggleRotation}>
+    <button type="button" className="image-container" onClick={toggleRotation}>
       <Image
         width={120}
         height={120}

@@ -1,4 +1,5 @@
-import { FC, memo } from 'react'
+import type { FC } from 'react'
+import { memo } from 'react'
 import { Badge } from './Badge'
 import { CustomLink } from './CustomLink'
 
@@ -16,7 +17,7 @@ export const Project: FC<Props> = memo(
   ({ title, descriptions, stacks, links }) => {
     return (
       <section className="flex flex-col gap-8">
-        <h1 className="text-3xl font-bold">{title}</h1>
+        <h1 className="font-bold text-3xl">{title}</h1>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">
             {descriptions.map((description) => (
@@ -38,5 +39,5 @@ export const Project: FC<Props> = memo(
         </div>
       </section>
     )
-  }
+  },
 )

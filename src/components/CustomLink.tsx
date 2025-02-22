@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 export const CustomLink = ({
   href,
@@ -15,7 +15,7 @@ export const CustomLink = ({
       href={href}
       target={external ? '_blank' : '_self'}
       rel={external ? 'noopener noreferrer' : undefined}
-      className="hover-underline-animation w-fit text-xl text-sky-200"
+      className="hover-underline-animation w-fit text-sky-200 text-xl"
     >
       {children}
     </Link>

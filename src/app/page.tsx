@@ -5,8 +5,8 @@ export default function Home() {
     <div className="flex flex-col gap-4">
       <RotatingPortrait />
       <div className="flex flex-col gap-1">
-        <h2 className="text-3xl font-bold">Kenta TSUNEMI</h2>
-        <h3 className="text-2xl font-bold">@tocomi</h3>
+        <h2 className="font-bold text-3xl">Kenta TSUNEMI</h2>
+        <h3 className="font-bold text-2xl">@tocomi</h3>
         <p className="text-lg">Web Engineer</p>
         <p className="text-lg">Techtouch, Inc.</p>
         <p className="text-lg">笑いの取れるエンジニアを目指しています🗿</p>

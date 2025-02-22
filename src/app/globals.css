@@ -16,7 +16,7 @@ body {
 
 .hover-underline-animation::after {
   @apply bg-sky-400;
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
   left: 50%;
