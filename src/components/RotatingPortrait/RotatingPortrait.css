@@ -8,6 +8,7 @@
   cursor: pointer;
   background: linear-gradient(to right, purple, orange);
   padding: 3px;
+  view-transition-name: portrait;
 }
 
 .rotating-image {
