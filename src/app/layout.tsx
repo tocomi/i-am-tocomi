@@ -36,7 +36,7 @@ export default function RootLayout({
       <body className={font.className}>
         <div className="flex items-center justify-center sm:h-screen">
           <main className="flex max-w-[800px] flex-col justify-between gap-12 p-8 sm:flex-row sm:gap-8">
-            <div className="flex max-w-[480px] items-center justify-center md:w-[480px]">
+            <div className="flex max-w-[480px] flex-col items-center justify-between md:w-[480px]">
               {children}
             </div>
             <div className="flex min-w-44 flex-1 flex-col items-start justify-center gap-8">

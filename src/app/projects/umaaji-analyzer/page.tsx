@@ -7,14 +7,7 @@ const descriptions = [
   'ISR を使うことで、リアルタイム性を一部犠牲にする代わりにスクレイピング回数を抑制しています。',
 ]
 
-const stacks = [
-  'Next.js',
-  'TypeScript',
-  'Panda CSS',
-  'Puppeteer',
-  'Cloud Run',
-  'Vercel',
-]
+const stacks = ['Next.js', 'TypeScript', 'Panda CSS', 'Puppeteer', 'Cloud Run']
 
 const links = [
   {

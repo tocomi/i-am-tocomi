@@ -1,7 +1,6 @@
 .image-container {
-  width: 120px;
-  height: 120px;
   border-radius: 50%;
+  width: fit-content;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -12,8 +11,6 @@
 }
 
 .rotating-image {
-  width: 100%;
-  height: auto;
   border-radius: 50%;
   animation: rotate 3s linear infinite;
 }
