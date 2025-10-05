@@ -15,14 +15,14 @@ const formattedDate = new Intl.DateTimeFormat('ja-JP', {
 }).format(pubDate)
 ---
 
-<article class="group border-b border-gray-200 py-4 first:pt-0 last:border-b-0">
+<article class="group border-b border-gray-200 py-2 first:pt-0 last:border-b-0">
   <a href={href} class="block" target={external ? '_blank' : '_self'}>
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-1">
       <div class="flex items-center justify-between gap-4">
         <div class="flex flex-wrap gap-2">
           {
             tags.map(tag => (
-              <span class="rounded-full px-2 py-0.5 text-xs text-gray-500 border-2 border-gray-500">
+              <span class="rounded-full px-2 py-0.5 text-xs text-gray-500 border-1 border-gray-500">
                 {tag}
               </span>
             ))
