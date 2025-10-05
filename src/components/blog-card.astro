@@ -1,29 +1,24 @@
 ---
-interface Props {
-  id: string
-  title: string
-  pubDate: Date
-  description: string
-  image: {
-    url: string
-    alt: string
-  }
-  tags: string[]
+import type { Blog } from '@/content/types'
+
+type Props = Blog & {
+  href: string
 }
 
-const { id, title, pubDate, description, image, tags } = Astro.props
+const { href, title, pubDate, tags } = Astro.props
 
 const formattedDate = new Intl.DateTimeFormat('ja-JP', {
   year: 'numeric',
   month: '2-digit',
   day: '2-digit',
 }).format(pubDate)
+const isExternal = href.startsWith('http')
 ---
 
 <article class="group border-b border-gray-200 py-4 first:pt-0 last:border-b-0">
-  <a href={`/blog/${id}`} class="block">
-    <div class="flex items-start justify-between gap-4">
-      <div class="flex-1">
+  <a href={href} class="block" target={isExternal ? '_blank' : '_self'}>
+    <div class="flex flex-col gap-2">
+      <div class="flex items-center justify-between gap-4">
         <div class="flex flex-wrap gap-2">
           {
             tags.map(tag => (
@@ -33,13 +28,13 @@ const formattedDate = new Intl.DateTimeFormat('ja-JP', {
             ))
           }
         </div>
-        <h2
-          class="mt-2 text-xl font-bold text-gray-900 transition-colors group-hover:text-blue-600"
-        >
-          {title}
-        </h2>
+        <time class="flex-shrink-0 text-sm text-gray-500">{formattedDate}</time>
       </div>
-      <time class="flex-shrink-0 text-sm text-gray-500">{formattedDate}</time>
+      <h2
+        class="text-lg font-bold text-gray-900 transition-colors group-hover:text-blue-600"
+      >
+        {title}
+      </h2>
     </div>
   </a>
 </article>

@@ -2,10 +2,20 @@
 import Layout from '@/layouts/layout.astro'
 import BlogCard from '@/components/blog-card.astro'
 import { getCollection } from 'astro:content'
+import type { Blog } from '@/content/types'
+import { externalPosts } from '@/content/external-posts'
+
+type Post = Blog & {
+  id: string
+}
 
 const posts = await getCollection('blog')
-const sortedPosts = posts.sort(
-  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+const mergedPosts: Post[] = [
+  ...posts.map(post => ({ ...post.data, id: post.id })),
+  ...externalPosts.map(post => ({ ...post, id: post.external?.url ?? '' })),
+]
+const sortedPosts = mergedPosts.sort(
+  (a, b) => b.pubDate.getTime() - a.pubDate.getTime()
 )
 ---
 
@@ -15,12 +25,10 @@ const sortedPosts = posts.sort(
     {
       sortedPosts.map(post => (
         <BlogCard
-          id={post.id}
-          title={post.data.title}
-          pubDate={post.data.pubDate}
-          description={post.data.description}
-          image={post.data.image}
-          tags={post.data.tags}
+          href={post.external?.url ?? `/blog/${post.id}`}
+          title={post.title}
+          pubDate={post.pubDate}
+          tags={post.tags}
         />
       ))
     }
