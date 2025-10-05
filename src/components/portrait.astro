@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets'
+import portrait from '@/assets/portrait.jpg'
+
+type Props = {
+  size: number
+}
+
+const { size } = Astro.props
+---
+
+<Image
+  src={portrait}
+  alt="Portrait"
+  width={size}
+  height={size}
+  class="rounded-full"
+/>
