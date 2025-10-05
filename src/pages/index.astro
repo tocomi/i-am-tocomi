@@ -4,20 +4,22 @@ import Portrait from '@/components/portrait.astro'
 ---
 
 <Layout title="Home">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-    <div class="flex justify-center">
+  <div class="grid grid-cols-1 md:grid-cols-10 gap-4 items-center">
+    <div class="flex justify-center md:col-span-4">
       <Portrait size={160} />
     </div>
-    <div class="flex flex-col gap-2">
-      <div>
+    <div class="flex flex-col gap-2 md:col-span-6">
+      <section>
         <h1 class="text-2xl font-bold">Kenta TSUNEMI</h1>
         <h2 class="text-xl font-bold">@tocomi</h2>
-      </div>
-      <div>
+      </section>
+      <section>
         <p class="text-lg">👨‍💻 Web Frontend Engineer</p>
         <p class="text-lg">🏢 Techtouch, Inc.</p>
-        <p class="text-lg">👤 笑いの取れるエンジニアを目指しています🗿</p>
-      </div>
+      </section>
+      <section>
+        <p class="text-lg">笑いの取れるエンジニアを目指しています🗿</p>
+      </section>
     </div>
   </div>
 </Layout>
