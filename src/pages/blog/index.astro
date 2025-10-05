@@ -1,18 +1,28 @@
 ---
 import Layout from '@/layouts/layout.astro'
+import BlogCard from '@/components/blog-card.astro'
 import { getCollection } from 'astro:content'
 
 const posts = await getCollection('blog')
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+)
 ---
 
 <Layout title="Blog">
-  <ul>
+  <h1 class="mb-8 text-3xl font-bold text-gray-900">Blog</h1>
+  <div class="flex flex-col gap-2">
     {
-      posts.map(post => (
-        <li>
-          <a href={`/blog/${post.id}`}>{post.data.title}</a>
-        </li>
+      sortedPosts.map(post => (
+        <BlogCard
+          id={post.id}
+          title={post.data.title}
+          pubDate={post.data.pubDate}
+          description={post.data.description}
+          image={post.data.image}
+          tags={post.data.tags}
+        />
       ))
     }
-  </ul>
+  </div>
 </Layout>
