@@ -1,9 +1,23 @@
 ---
 import Layout from '@/layouts/layout.astro'
-import Portrait from '@/components/Portrait.astro'
+import Portrait from '@/components/portrait.astro'
 ---
 
 <Layout title="Home">
-  <h2>Kenta TSUNEMI @tocomi</h2>
-  <Portrait size={100} />
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+    <div class="flex justify-center">
+      <Portrait size={160} />
+    </div>
+    <div class="flex flex-col gap-2">
+      <div>
+        <h1 class="text-2xl font-bold">Kenta TSUNEMI</h1>
+        <h2 class="text-xl font-bold">@tocomi</h2>
+      </div>
+      <div>
+        <p class="text-lg">👨‍💻 Web Frontend Engineer</p>
+        <p class="text-lg">🏢 Techtouch, Inc.</p>
+        <p class="text-lg">👤 笑いの取れるエンジニアを目指しています🗿</p>
+      </div>
+    </div>
+  </div>
 </Layout>
