@@ -14,6 +14,15 @@ export const externalPosts: Blog[] = [
     tags: ['イベント'],
   },
   {
+    title: 'TanStack Query v5 の新機能と最適化',
+    pubDate: new Date('2024-03-11'),
+    external: {
+      url: 'https://tech.techtouch.jp/entry/tanstack-query-v5-update',
+      platform: 'hatena',
+    },
+    tags: ['技術'],
+  },
+  {
     title: 'Next.js のアプリに NextAuth でシンプルな認証機能をつける',
     pubDate: new Date('2024-02-14'),
     external: {
