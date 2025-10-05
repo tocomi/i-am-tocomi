@@ -1,4 +1,6 @@
 ---
+import Header from '@/components/header.astro'
+
 interface Props {
   title: string
 }
@@ -16,10 +18,7 @@ const { title } = Astro.props
     <title>{`${title} | I am tocomi`}</title>
   </head>
   <body>
-    <nav>
-      <a href="/">ホーム</a>
-      <a href="/blog">ブログ</a>
-    </nav>
+    <Header />
     <article>
       <slot />
     </article>

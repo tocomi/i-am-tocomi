@@ -6,8 +6,6 @@ const posts = await getCollection('blog')
 ---
 
 <Layout title="Blog">
-  <h2>Blog</h2>
-
   <ul>
     {
       posts.map(post => (

@@ -1,0 +1,33 @@
+---
+const currentPath = Astro.url.pathname
+---
+
+<header class="sticky top-0 z-50 border-b border-gray-200 bg-white">
+  <nav class="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
+    <a href="/" class="text-xl font-bold text-gray-900"> tocomi </a>
+    <div class="flex gap-6">
+      <a
+        href="/"
+        class:list={[
+          'transition-colors',
+          currentPath === '/'
+            ? 'text-blue-600 font-semibold'
+            : 'text-gray-600 hover:text-gray-900',
+        ]}
+      >
+        Home
+      </a>
+      <a
+        href="/blog"
+        class:list={[
+          'transition-colors',
+          currentPath.startsWith('/blog')
+            ? 'text-blue-600 font-semibold'
+            : 'text-gray-600 hover:text-gray-900',
+        ]}
+      >
+        Blog
+      </a>
+    </div>
+  </nav>
+</header>
