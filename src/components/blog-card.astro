@@ -1,24 +1,22 @@
 ---
 import type { Blog } from '@/content/types'
-import { Image } from 'astro:assets'
-import zennLogo from '@/assets/logo/zenn.svg'
+import ExternalIcons from '@/components/external-icons.astro'
 
 type Props = Blog & {
   href: string
 }
 
-const { href, title, pubDate, tags } = Astro.props
+const { href, title, pubDate, tags, external } = Astro.props
 
 const formattedDate = new Intl.DateTimeFormat('ja-JP', {
   year: 'numeric',
   month: '2-digit',
   day: '2-digit',
 }).format(pubDate)
-const isExternal = href.startsWith('http')
 ---
 
 <article class="group border-b border-gray-200 py-4 first:pt-0 last:border-b-0">
-  <a href={href} class="block" target={isExternal ? '_blank' : '_self'}>
+  <a href={href} class="block" target={external ? '_blank' : '_self'}>
     <div class="flex flex-col gap-2">
       <div class="flex items-center justify-between gap-4">
         <div class="flex flex-wrap gap-2">
@@ -33,30 +31,10 @@ const isExternal = href.startsWith('http')
         <time class="flex-shrink-0 text-sm text-gray-500">{formattedDate}</time>
       </div>
       <h2
-        class="text-lg font-bold text-gray-900 transition-colors group-hover:text-blue-600"
+        class="font-bold text-gray-900 transition-colors group-hover:text-blue-600"
       >
         {title}
-        {
-          isExternal && (
-            <>
-              <Image src={zennLogo} alt="Zenn" class="mb-1 inline h-4 w-4" />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="mb-1 inline h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-            </>
-          )
-        }
+        {external && <ExternalIcons platform={external.platform} />}
       </h2>
     </div>
   </a>
