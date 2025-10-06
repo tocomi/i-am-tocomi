@@ -1,6 +1,14 @@
 import { z } from 'astro:content'
 
-export const tag = z.enum(['技術', 'イベント', '読書', '趣味', '日常'])
+export const tag = z.enum([
+  '技術',
+  'イベント',
+  '読書',
+  '趣味',
+  '日常',
+  'マネジメント',
+  'チーム開発',
+])
 
 export const blogSchema = z.object({
   title: z.string(),
