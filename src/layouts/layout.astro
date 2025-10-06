@@ -1,6 +1,8 @@
 ---
 import Header from '@/components/header.astro'
 
+import '@/styles/global.css'
+
 interface Props {
   title: string
 }
@@ -12,7 +14,6 @@ const { title } = Astro.props
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="/src/styles/global.css" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{`${title} | I am tocomi`}</title>
