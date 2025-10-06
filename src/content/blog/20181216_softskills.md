@@ -6,7 +6,7 @@ tags: ["読書"]
 
 ## はじめに
 
-最近「[SOFT SKILLS](https://amzn.asia/d/cmjCqK1)」という本を読みました。
+最近「[SOFT SKILLS](https://bookplus.nikkei.com/atcl/catalog/16/P51550/)」という本を読みました。
 
 買ったのは結構前なんですが、そのときはちょっと読んでみたもののあまりピンとこず、そのまま kindle でひっそりと眠っていました。
 
