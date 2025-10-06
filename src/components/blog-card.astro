@@ -1,6 +1,7 @@
 ---
 import type { Blog } from '@/content/types'
 import ExternalIcons from '@/components/external-icons.astro'
+import { formatFullDate } from '@/utils/date-util'
 
 type Props = Blog & {
   href: string
@@ -8,11 +9,7 @@ type Props = Blog & {
 
 const { href, title, pubDate, tags, external } = Astro.props
 
-const formattedDate = new Intl.DateTimeFormat('ja-JP', {
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-}).format(pubDate)
+const formattedDate = formatFullDate(pubDate)
 ---
 
 <article class="group border-b border-gray-200 py-2 first:pt-0 last:border-b-0">
