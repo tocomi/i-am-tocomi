@@ -17,20 +17,45 @@ const mergedPosts: Post[] = [
 const sortedPosts = mergedPosts.sort(
   (a, b) => b.pubDate.getTime() - a.pubDate.getTime()
 )
+
+// 年ごとにグループ化
+const postsByYear = sortedPosts.reduce(
+  (acc, post) => {
+    const year = post.pubDate.getFullYear()
+    if (!acc[year]) {
+      acc[year] = []
+    }
+    acc[year].push(post)
+    return acc
+  },
+  {} as Record<number, Post[]>
+)
+
+// 年を降順でソート
+const years = Object.keys(postsByYear)
+  .map(Number)
+  .sort((a, b) => b - a)
 ---
 
 <Layout title="Blog">
   <h1 class="mb-8 text-3xl font-bold text-gray-900">Blog</h1>
-  <div class="flex flex-col gap-1">
+  <div class="flex flex-col gap-6">
     {
-      sortedPosts.map(post => (
-        <BlogCard
-          href={post.external?.url ?? `/blog/${post.id}`}
-          title={post.title}
-          pubDate={post.pubDate}
-          tags={post.tags}
-          external={post.external}
-        />
+      years.map(year => (
+        <div>
+          <h2 class="mb-4 text-2xl font-semibold text-gray-800">{year}</h2>
+          <div class="flex flex-col gap-1">
+            {postsByYear[year].map(post => (
+              <BlogCard
+                href={post.external?.url ?? `/blog/${post.id}`}
+                title={post.title}
+                pubDate={post.pubDate}
+                tags={post.tags}
+                external={post.external}
+              />
+            ))}
+          </div>
+        </div>
       ))
     }
   </div>
