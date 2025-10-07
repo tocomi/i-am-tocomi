@@ -8,6 +8,7 @@ export const tag = z.enum([
   '日常',
   'マネジメント',
   'チーム開発',
+  '登壇',
 ])
 
 export const blogSchema = z.object({
