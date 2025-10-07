@@ -1,0 +1,57 @@
+---
+import Layout from '@/layouts/layout.astro'
+
+import { careers, hobbies } from './data'
+---
+
+<Layout title="About">
+  <h1 class="text-3xl font-bold mb-6">About Me</h1>
+
+  <div class="space-y-6">
+    <!-- 自己紹介 -->
+    <section class="space-y-2">
+      <p class="leading-relaxed">常見健太。ハンドルネームはtocomi。</p>
+      <p class="leading-relaxed">
+        実際は本名の「つねみ」で呼ばれることが多いので、自己紹介でいつも迷ってます。
+      </p>
+      <p class="leading-relaxed">栃木県出身の1992年生まれ。</p>
+    </section>
+
+    <!-- 経歴 -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Career</h2>
+      <div class="relative border-l-2 border-gray-300 pl-8 space-y-8">
+        {
+          careers.map(career => (
+            <div class="relative">
+              <div class="absolute -left-10.5 w-5 h-5 bg-blue-500 rounded-full border-4 border-white" />
+              <div class="space-y-2">
+                <p class="text-sm text-gray-500">{career.period}</p>
+                <h3 class="text-xl font-bold">{career.company}</h3>
+                <p class="text-gray-700">{career.role}</p>
+                <p class="text-gray-600">{career.description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- 趣味 -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4">Hobbies</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+          hobbies.map(hobby => (
+            <div class="p-6 bg-gray-50 rounded-lg">
+              <h3 class="text-xl font-bold mb-2">
+                {hobby.icon} {hobby.title}
+              </h3>
+              <p class="text-gray-700">{hobby.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</Layout>
