@@ -8,6 +8,9 @@ interface Props {
 }
 
 const { title } = Astro.props
+const ogImageUrl = Astro.site
+  ? new URL('/ogp.png', Astro.site).href
+  : '/ogp.png'
 ---
 
 <html lang="ja">
@@ -21,7 +24,7 @@ const { title } = Astro.props
     <!-- OGP -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content="I am tocomi" />
-    <meta property="og:image" content={new URL('/ogp.png', Astro.site)} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:url" content={Astro.url.toString()} />
     <meta property="og:type" content="website" />
 
@@ -29,7 +32,7 @@ const { title } = Astro.props
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content="I am tocomi" />
-    <meta name="twitter:image" content={new URL('/ogp.png', Astro.site)} />
+    <meta name="twitter:image" content={ogImageUrl} />
   </head>
   <body>
     <Header />
