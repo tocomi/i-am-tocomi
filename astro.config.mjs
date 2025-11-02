@@ -9,7 +9,7 @@ import tailwindcss from '@tailwindcss/vite'
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: 'https://i-am-tocomi.pages.dev/',
+  site: 'https://i-am-tocomi.pages.dev',
   adapter: cloudflare({
     imageService: 'compile',
   }),
