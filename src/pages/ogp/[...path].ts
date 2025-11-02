@@ -1,9 +1,10 @@
-import { ImageResponse } from '@vercel/og'
 import type { APIRoute } from 'astro'
 import { getCollection } from 'astro:content'
 import { Ogp } from '@/components/ogp'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
+import satori from 'satori'
+import { Resvg } from '@resvg/resvg-js'
 
 export async function getStaticPaths() {
   // Static pages
@@ -41,7 +42,8 @@ export const GET: APIRoute<{ title: string }> = async ({ props }) => {
   )
   const fontData = readFileSync(fontPath)
 
-  return new ImageResponse(Ogp({ title }), {
+  // Generate SVG with satori
+  const svg = await satori(Ogp({ title }), {
     width: 1200,
     height: 630,
     fonts: [
@@ -51,5 +53,22 @@ export const GET: APIRoute<{ title: string }> = async ({ props }) => {
         style: 'normal',
       },
     ],
+  })
+
+  // Convert SVG to PNG with resvg
+  const resvg = new Resvg(svg, {
+    fitTo: {
+      mode: 'width',
+      value: 1200,
+    },
+  })
+  const pngData = resvg.render()
+  const pngBuffer = Buffer.from(pngData.asPng())
+
+  return new Response(pngBuffer, {
+    headers: {
+      'Content-Type': 'image/png',
+      'Cache-Control': 'public, max-age=31536000, immutable',
+    },
   })
 }

@@ -10,10 +10,11 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   output: 'static',
   site: 'https://i-am-tocomi.pages.dev/',
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: 'compile',
+  }),
   vite: {
     plugins: [tailwindcss()],
   },
-
   integrations: [icon(), react()],
 })
