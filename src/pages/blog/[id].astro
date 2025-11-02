@@ -21,7 +21,7 @@ const { Content } = await render(post)
 const formattedDate = formatFullDate(post.data.pubDate)
 ---
 
-<Layout title={post.data.title}>
+<Layout title={post.data.title} ogpPath={`blog/${post.id}`}>
   <div class="mb-4">
     <BackToBlogs />
   </div>

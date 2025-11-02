@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
+  output: 'static',
   site: 'https://i-am-tocomi.pages.dev/',
   adapter: cloudflare(),
   vite: {

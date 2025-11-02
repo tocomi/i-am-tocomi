@@ -5,10 +5,11 @@ import '@/styles/global.css'
 
 interface Props {
   title: string
+  ogpPath: string
 }
 
-const { title } = Astro.props
-const ogImageUrl = `/api/ogp?title=${encodeURIComponent(title)}`
+const { title, ogpPath } = Astro.props
+const ogImageUrl = `/ogp/${ogpPath}`
 ---
 
 <html lang="ja">
