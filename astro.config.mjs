@@ -15,6 +15,10 @@ export default defineConfig({
   }),
   vite: {
     plugins: [tailwindcss()],
+    ssr: {
+      // NOTE: バイナリファイルがビルド対象に含まれるため除外
+      external: ['@resvg/resvg-js'],
+    },
   },
   integrations: [icon(), react()],
 })
