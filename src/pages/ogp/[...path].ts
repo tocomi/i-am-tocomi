@@ -2,8 +2,8 @@ import { ImageResponse } from '@vercel/og'
 import type { APIRoute } from 'astro'
 import { getCollection } from 'astro:content'
 import { Ogp } from '@/components/ogp'
-
-export const prerender = true
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 
 export async function getStaticPaths() {
   // Static pages
@@ -29,11 +29,17 @@ export async function getStaticPaths() {
   }))
 }
 
-export const GET: APIRoute<{ title: string }> = async ({ props, request }) => {
+export const GET: APIRoute<{ title: string }> = async ({ props }) => {
   const { title } = props
 
-  const fontUrl = `${new URL(request.url).origin}/fonts/NotoSansJP-Regular.ttf`
-  const fontData = await fetch(fontUrl).then(r => r.arrayBuffer())
+  // Read font file from the file system during build
+  const fontPath = join(
+    process.cwd(),
+    'public',
+    'fonts',
+    'NotoSansJP-Regular.ttf'
+  )
+  const fontData = readFileSync(fontPath)
 
   return new ImageResponse(Ogp({ title }), {
     width: 1200,
