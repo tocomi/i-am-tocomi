@@ -6,14 +6,13 @@ export const prerender = false
 
 export const GET: APIRoute = async ({ request }) => {
   const url = new URL(request.url)
-  const title = url.searchParams.get('title') ?? 'Untitled'
+  const title = url.searchParams.get('title')
   if (!title) {
     return new Response('Title is required', { status: 400 })
   }
 
-  const fontData = await fetch(
-    new URL('@/fonts/NotoSansJP-Regular.ttf', import.meta.url)
-  ).then(res => res.arrayBuffer())
+  const fontUrl = `${new URL(request.url).origin}/fonts/NotoSansJP-Regular.ttf`
+  const fontData = await fetch(fontUrl).then(r => r.arrayBuffer())
 
   return new ImageResponse(Ogp({ title }), {
     width: 1200,
