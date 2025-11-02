@@ -17,7 +17,7 @@ export async function getStaticPaths() {
   // Blog posts
   const posts = await getCollection('blog')
   const blogPages = posts.map(post => ({
-    path: `blog-${post.id}`,
+    path: `blog/${post.id}`,
     title: post.data.title,
   }))
 
