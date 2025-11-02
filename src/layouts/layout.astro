@@ -8,9 +8,7 @@ interface Props {
 }
 
 const { title } = Astro.props
-const ogImageUrl = Astro.site
-  ? new URL('/ogp.png', Astro.site).href
-  : '/ogp.png'
+const ogImageUrl = `/api/ogp?title=${encodeURIComponent(title)}`
 ---
 
 <html lang="ja">
