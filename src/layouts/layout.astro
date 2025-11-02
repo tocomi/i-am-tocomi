@@ -5,12 +5,11 @@ import '@/styles/global.css'
 
 interface Props {
   title: string
+  ogpPath: string
 }
 
-const { title } = Astro.props
-const ogImageUrl = Astro.site
-  ? new URL('/ogp.png', Astro.site).href
-  : '/ogp.png'
+const { title, ogpPath } = Astro.props
+const ogImageUrl = `/ogp/${ogpPath}.png`
 ---
 
 <html lang="ja">
