@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions'
 import Header from '@/components/header.astro'
 
 import '@/styles/global.css'
@@ -19,6 +20,7 @@ const ogImageUrl = `${Astro.site}/ogp/${ogpPath}.png`
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{`${title} | I am tocomi`}</title>
+    <ClientRouter />
 
     <!-- OGP -->
     <meta property="og:title" content={title} />
