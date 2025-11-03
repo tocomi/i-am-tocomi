@@ -1,12 +1,26 @@
 import type { ReactNode } from 'react'
 
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
+
 type Props = {
   title: string
-  portraitBase64: string
-  moyaiBase64: string
 }
 
-export const Ogp = ({ title, portraitBase64, moyaiBase64 }: Props) => (
+const portraitPath = join(process.cwd(), 'public', 'images', 'portrait.jpg')
+const portraitData = readFileSync(portraitPath)
+const portraitBase64 = `data:image/jpeg;base64,${portraitData.toString('base64')}`
+
+const moyaiPath = join(process.cwd(), 'public', 'images', 'moyai.png')
+const moyaiData = readFileSync(moyaiPath)
+const moyaiBase64 = `data:image/png;base64,${moyaiData.toString('base64')}`
+
+/**
+ * OGP 生成用のコンポーネント
+ *
+ * - web サイト上で表示する想定はない
+ */
+export const Ogp = ({ title }: Props) => (
   <Background>
     <Container>
       <Title title={title} />
