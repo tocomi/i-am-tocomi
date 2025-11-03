@@ -21,7 +21,7 @@ const currentPath = Astro.url.pathname
         href="/about"
         class:list={[
           'transition-colors',
-          currentPath === '/about'
+          currentPath.startsWith('/about')
             ? 'text-blue-600 font-semibold'
             : 'text-gray-600 hover:text-gray-900',
         ]}
