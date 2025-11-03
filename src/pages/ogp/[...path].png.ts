@@ -9,9 +9,9 @@ import { Resvg } from '@resvg/resvg-js'
 export async function getStaticPaths() {
   // Static pages
   const staticPages = [
-    { path: 'home', title: 'Home' },
-    { path: 'about', title: 'About' },
-    { path: 'blog', title: 'Blog' },
+    { path: 'home', title: 'つねみ / tocomi と申します。よろしゅう。' },
+    { path: 'about', title: 'About 我' },
+    { path: 'blog', title: 'ブログ記事たち' },
   ]
 
   // Blog posts
