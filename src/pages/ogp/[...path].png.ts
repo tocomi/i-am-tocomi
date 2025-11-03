@@ -38,12 +38,17 @@ export const GET: APIRoute<{ title: string }> = async ({ props }) => {
     process.cwd(),
     'public',
     'fonts',
-    'NotoSansJP-Regular.ttf'
+    'NotoSansJP-SemiBold.ttf'
   )
   const fontData = readFileSync(fontPath)
 
+  // Read portrait image and convert to base64
+  const portraitPath = join(process.cwd(), 'public', 'images', 'portrait.jpg')
+  const portraitData = readFileSync(portraitPath)
+  const portraitBase64 = `data:image/jpeg;base64,${portraitData.toString('base64')}`
+
   // Generate SVG with satori
-  const svg = await satori(Ogp({ title }), {
+  const svg = await satori(Ogp({ title, portraitBase64 }), {
     width: 1200,
     height: 630,
     fonts: [
