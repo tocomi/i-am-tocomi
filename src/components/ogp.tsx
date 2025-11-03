@@ -66,15 +66,56 @@ const Container = ({ children }: { children: ReactNode }) => (
 )
 
 const Title = ({ title }: { title: string }) => (
-  <div style={{ display: 'flex', width: '100%' }}>
-    <h1
+  <div
+    style={{
+      display: 'flex',
+      width: '100%',
+      position: 'relative',
+    }}
+  >
+    <div
       style={{
-        fontSize: '48px',
-        margin: 0,
+        display: 'flex',
+        width: '100%',
+        border: '4px solid black',
+        borderRadius: '24px',
+        padding: '20px 32px',
+        height: '264px',
       }}
     >
-      {title}
-    </h1>
+      <h1
+        style={{
+          fontSize: '48px',
+          margin: 0,
+        }}
+      >
+        {title}
+      </h1>
+    </div>
+    <div
+      style={{
+        position: 'absolute',
+        bottom: '-18px',
+        right: '84px',
+        width: '0',
+        height: '0',
+        borderLeft: '10px solid transparent',
+        borderRight: '10px solid transparent',
+        borderTop: '20px solid black',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        bottom: '-13px',
+        right: '87px',
+        width: '0',
+        height: '0',
+        borderLeft: '7px solid transparent',
+        borderRight: '7px solid transparent',
+        borderTop: '17px solid white',
+      }}
+    />
   </div>
 )
 
