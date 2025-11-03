@@ -55,9 +55,9 @@ const Container = ({ children }: { children: ReactNode }) => (
       borderRadius: '16px',
       flexDirection: 'column',
       gap: '16px',
-      width: '1160px',
-      height: '590px',
-      padding: '48px',
+      width: '1136px',
+      height: '566px',
+      padding: '32px',
       boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.3)',
     }}
   >
