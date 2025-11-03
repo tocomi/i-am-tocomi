@@ -3,38 +3,14 @@ import type { ReactNode } from 'react'
 type Props = {
   title: string
   portraitBase64: string
+  moyaiBase64: string
 }
 
-export const Ogp = ({ title, portraitBase64 }: Props) => (
+export const Ogp = ({ title, portraitBase64, moyaiBase64 }: Props) => (
   <Background>
     <Container>
-      <h1
-        style={{
-          fontSize: '72px',
-          fontWeight: 'bold',
-          lineHeight: '1.1',
-          margin: 0,
-        }}
-      >
-        {title}
-      </h1>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100px',
-          height: '100px',
-          borderRadius: '50%',
-          backgroundColor: 'gray',
-        }}
-      >
-        <img
-          src={portraitBase64}
-          alt="Portrait"
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      </div>
+      <Title title={title} />
+      <Footer portraitBase64={portraitBase64} moyaiBase64={moyaiBase64} />
     </Container>
   </Background>
 )
@@ -67,10 +43,70 @@ const Container = ({ children }: { children: ReactNode }) => (
       gap: '16px',
       width: '1160px',
       height: '590px',
-      padding: '16px',
-      boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.1)',
+      padding: '48px',
+      boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.3)',
     }}
   >
     {children}
+  </div>
+)
+
+const Title = ({ title }: { title: string }) => (
+  <div style={{ display: 'flex', width: '100%' }}>
+    <h1
+      style={{
+        fontSize: '48px',
+        margin: 0,
+      }}
+    >
+      {title}
+    </h1>
+  </div>
+)
+
+const Footer = ({
+  portraitBase64,
+  moyaiBase64,
+}: {
+  portraitBase64: string
+  moyaiBase64: string
+}) => (
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'flex-end',
+      justifyContent: 'space-between',
+      width: '100%',
+    }}
+  >
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '16px',
+      }}
+    >
+      <img
+        src={portraitBase64}
+        alt="Portrait"
+        style={{
+          objectFit: 'cover',
+          borderRadius: '50%',
+          width: '100px',
+          height: '100px',
+        }}
+      />
+      <p style={{ fontSize: '36px' }}>Kenta TSUNEMI / @tocomi</p>
+    </div>
+    <div style={{ display: 'flex' }}>
+      <img
+        src={moyaiBase64}
+        alt="Moyai"
+        style={{
+          width: '200px',
+          height: '200px',
+        }}
+      />
+    </div>
   </div>
 )

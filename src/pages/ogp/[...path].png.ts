@@ -33,7 +33,6 @@ export async function getStaticPaths() {
 export const GET: APIRoute<{ title: string }> = async ({ props }) => {
   const { title } = props
 
-  // Read font file from the file system during build
   const fontPath = join(
     process.cwd(),
     'public',
@@ -42,13 +41,15 @@ export const GET: APIRoute<{ title: string }> = async ({ props }) => {
   )
   const fontData = readFileSync(fontPath)
 
-  // Read portrait image and convert to base64
   const portraitPath = join(process.cwd(), 'public', 'images', 'portrait.jpg')
   const portraitData = readFileSync(portraitPath)
   const portraitBase64 = `data:image/jpeg;base64,${portraitData.toString('base64')}`
 
-  // Generate SVG with satori
-  const svg = await satori(Ogp({ title, portraitBase64 }), {
+  const moyaiPath = join(process.cwd(), 'public', 'images', 'moyai.png')
+  const moyaiData = readFileSync(moyaiPath)
+  const moyaiBase64 = `data:image/png;base64,${moyaiData.toString('base64')}`
+
+  const svg = await satori(Ogp({ title, portraitBase64, moyaiBase64 }), {
     width: 1200,
     height: 630,
     fonts: [
@@ -60,7 +61,6 @@ export const GET: APIRoute<{ title: string }> = async ({ props }) => {
     ],
   })
 
-  // Convert SVG to PNG with resvg
   const resvg = new Resvg(svg, {
     fitTo: {
       mode: 'width',
