@@ -9,9 +9,9 @@ import { Resvg } from '@resvg/resvg-js'
 export async function getStaticPaths() {
   // Static pages
   const staticPages = [
-    { path: 'home', title: 'Home' },
-    { path: 'about', title: 'About' },
-    { path: 'blog', title: 'Blog' },
+    { path: 'home', title: 'つねみ / tocomi と申します。よろしゅう。' },
+    { path: 'about', title: 'About 我' },
+    { path: 'blog', title: 'ブログ記事たち' },
   ]
 
   // Blog posts
@@ -33,16 +33,14 @@ export async function getStaticPaths() {
 export const GET: APIRoute<{ title: string }> = async ({ props }) => {
   const { title } = props
 
-  // Read font file from the file system during build
   const fontPath = join(
     process.cwd(),
     'public',
     'fonts',
-    'NotoSansJP-Regular.ttf'
+    'NotoSansJP-SemiBold.ttf'
   )
   const fontData = readFileSync(fontPath)
 
-  // Generate SVG with satori
   const svg = await satori(Ogp({ title }), {
     width: 1200,
     height: 630,
@@ -55,7 +53,6 @@ export const GET: APIRoute<{ title: string }> = async ({ props }) => {
     ],
   })
 
-  // Convert SVG to PNG with resvg
   const resvg = new Resvg(svg, {
     fitTo: {
       mode: 'width',

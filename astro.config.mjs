@@ -9,15 +9,19 @@ import tailwindcss from '@tailwindcss/vite'
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: 'https://i-am-tocomi.pages.dev/',
+  site: 'https://i-am-tocomi.pages.dev',
   adapter: cloudflare({
     imageService: 'compile',
   }),
   vite: {
     plugins: [tailwindcss()],
     ssr: {
-      // NOTE: バイナリファイルがビルド対象に含まれるため除外
-      external: ['@resvg/resvg-js'],
+      external: [
+        // NOTE: バイナリファイルがビルド対象に含まれてしまうため除外
+        '@resvg/resvg-js',
+        'node:fs',
+        'node:path',
+      ],
     },
   },
   integrations: [icon(), react()],

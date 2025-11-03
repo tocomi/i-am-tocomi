@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { title, ogpPath } = Astro.props
-const ogImageUrl = `/ogp/${ogpPath}.png`
+const ogImageUrl = `${Astro.site}/ogp/${ogpPath}.png`
 ---
 
 <html lang="ja">
