@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/layout.astro'
 import Portrait from '@/components/portrait.astro'
+import TalksList from '@/components/talks-list.astro'
 ---
 
 <Layout title="Home" ogpPath="home">
@@ -16,10 +17,13 @@ import Portrait from '@/components/portrait.astro'
       <section>
         <p class="text-lg">👨‍💻 Web Frontend Engineer</p>
         <p class="text-lg">🏢 Techtouch, Inc.</p>
+        <p class="text-lg">🎪 TSKaigi スタッフ(2025, 2026)</p>
       </section>
       <section>
         <p class="text-lg">笑いの取れるエンジニアを目指しています🗿</p>
       </section>
     </div>
   </div>
+
+  <TalksList />
 </Layout>
