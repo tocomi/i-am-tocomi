@@ -12,9 +12,11 @@ const borderWidth = Math.max(1, Math.round(size * 0.025))
 ---
 
 <div
-  class="portrait-wrapper"
+  class="portrait-wrapper spinning"
   style={`--size: ${size}px; --border-width: ${borderWidth}px`}
   transition:name="portrait"
+  role="button"
+  tabindex="0"
 >
   <Image
     src={portrait}
@@ -33,6 +35,25 @@ const borderWidth = Math.max(1, Math.round(size * 0.025))
     border-radius: 9999px;
     background: linear-gradient(90deg, purple, orange);
     display: inline-block;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .portrait-wrapper.spinning {
+    animation: spin 3s linear infinite;
+  }
+
+  .portrait-wrapper.spinning.paused {
+    animation-play-state: paused;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .portrait-wrapper :global(img) {
@@ -40,3 +61,25 @@ const borderWidth = Math.max(1, Math.round(size * 0.025))
     object-fit: cover;
   }
 </style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const portraits = document.querySelectorAll('.portrait-wrapper')
+
+    portraits.forEach(portrait => {
+      const handleClick = () => {
+        portrait.classList.toggle('paused')
+      }
+
+      const handleKeyPress = (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          portrait.classList.toggle('paused')
+        }
+      }
+
+      portrait.addEventListener('click', handleClick)
+      portrait.addEventListener('keypress', handleKeyPress as EventListener)
+    })
+  })
+</script>
