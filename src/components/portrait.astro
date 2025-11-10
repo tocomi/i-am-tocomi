@@ -9,10 +9,28 @@ type Props = {
 const { size } = Astro.props
 ---
 
-<Image
-  src={portrait}
-  alt="Portrait"
-  width={size}
-  height={size}
-  class="rounded-full"
-/>
+<div class="portrait-wrapper" style={`--size: ${size}px`}>
+  <Image
+    src={portrait}
+    alt="Portrait"
+    width={size}
+    height={size}
+    class="rounded-full"
+  />
+</div>
+
+<style>
+  .portrait-wrapper {
+    width: var(--size);
+    height: var(--size);
+    padding: 4px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, purple, orange);
+    display: inline-block;
+  }
+
+  .portrait-wrapper :global(img) {
+    display: block;
+    object-fit: cover;
+  }
+</style>
