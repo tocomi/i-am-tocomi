@@ -24,7 +24,7 @@ export const Ogp = ({ title }: Props) => (
   <Background>
     <Container>
       <Title title={title} />
-      <Footer portraitBase64={portraitBase64} moyaiBase64={moyaiBase64} />
+      <Footer />
     </Container>
   </Background>
 )
@@ -119,13 +119,7 @@ const Title = ({ title }: { title: string }) => (
   </div>
 )
 
-const Footer = ({
-  portraitBase64,
-  moyaiBase64,
-}: {
-  portraitBase64: string
-  moyaiBase64: string
-}) => (
+const Footer = () => (
   <div
     style={{
       display: 'flex',
