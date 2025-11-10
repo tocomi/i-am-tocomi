@@ -7,9 +7,15 @@ type Props = {
 }
 
 const { size } = Astro.props
+// NOTE: 画像サイズに合わせてボーダー幅を調整
+const borderWidth = Math.max(1, Math.round(size * 0.025))
 ---
 
-<div class="portrait-wrapper" style={`--size: ${size}px`}>
+<div
+  class="portrait-wrapper"
+  style={`--size: ${size}px; --border-width: ${borderWidth}px`}
+  transition:name="portrait"
+>
   <Image
     src={portrait}
     alt="Portrait"
@@ -23,7 +29,7 @@ const { size } = Astro.props
   .portrait-wrapper {
     width: var(--size);
     height: var(--size);
-    padding: 4px;
+    padding: var(--border-width);
     border-radius: 9999px;
     background: linear-gradient(90deg, purple, orange);
     display: inline-block;
