@@ -9,6 +9,7 @@ export const tag = z.enum([
   'マネジメント',
   'チーム開発',
   '登壇',
+  'スタッフ',
 ])
 
 export const blogSchema = z.object({
