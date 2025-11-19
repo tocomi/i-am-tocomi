@@ -6,6 +6,8 @@ import cloudflare from '@astrojs/cloudflare'
 
 import tailwindcss from '@tailwindcss/vite'
 
+import rehypeExternalLinks from 'rehype-external-links'
+
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
@@ -25,4 +27,15 @@ export default defineConfig({
     },
   },
   integrations: [icon(), react()],
+  markdown: {
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+          rel: 'noopener noreferrer',
+        },
+      ],
+    ],
+  },
 })
