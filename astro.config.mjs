@@ -28,6 +28,7 @@ export default defineConfig({
   },
   integrations: [icon(), react()],
   markdown: {
+    syntaxHighlight: 'shiki',
     rehypePlugins: [
       [
         rehypeExternalLinks,
