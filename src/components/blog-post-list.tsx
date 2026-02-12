@@ -145,14 +145,6 @@ export const BlogPostList = ({ posts, allTags, allYears }: Props) => {
     .map(Number)
     .sort((a, b) => b - a)
 
-  const handleTagClick = (tag: Tag) => {
-    setSelectedTag(prev => (prev === tag ? null : tag))
-  }
-
-  const handleYearClick = (year: number) => {
-    setSelectedYear(prev => (prev === year ? null : year))
-  }
-
   const handleReset = () => {
     setSelectedTag(null)
     setSelectedYear(null)
@@ -163,54 +155,39 @@ export const BlogPostList = ({ posts, allTags, allYears }: Props) => {
   return (
     <div>
       {/* フィルター */}
-      <div className="mb-8 flex flex-col gap-4">
-        {/* カテゴリフィルター */}
-        <div>
-          <div className="mb-2 text-sm font-semibold text-gray-600">
-            カテゴリ
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {allTags.map(tag => (
-              <button
-                key={tag}
-                type="button"
-                onClick={() => handleTagClick(tag)}
-                className={`rounded-full border px-3 py-1 text-xs transition-colors cursor-pointer ${
-                  selectedTag === tag
-                    ? 'border-blue-500 bg-blue-500 text-white'
-                    : 'border-gray-300 text-gray-600 hover:border-gray-400 hover:bg-gray-50'
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
-        </div>
+      <div className="mb-8 flex items-center gap-4">
+        <select
+          value={selectedTag ?? ''}
+          onChange={e =>
+            setSelectedTag(e.target.value ? (e.target.value as Tag) : null)
+          }
+          className="rounded border border-gray-300 px-3 py-1.5 text-sm text-gray-700 cursor-pointer"
+        >
+          <option value="">カテゴリ</option>
+          {allTags.map(tag => (
+            <option key={tag} value={tag}>
+              {tag}
+            </option>
+          ))}
+        </select>
 
-        {/* 年フィルター */}
-        <div>
-          <div className="mb-2 text-sm font-semibold text-gray-600">年</div>
-          <div className="flex flex-wrap gap-1.5">
-            {allYears.map(year => (
-              <button
-                key={year}
-                type="button"
-                onClick={() => handleYearClick(year)}
-                className={`rounded-full border px-3 py-1 text-xs transition-colors cursor-pointer ${
-                  selectedYear === year
-                    ? 'border-blue-500 bg-blue-500 text-white'
-                    : 'border-gray-300 text-gray-600 hover:border-gray-400 hover:bg-gray-50'
-                }`}
-              >
-                {year}
-              </button>
-            ))}
-          </div>
-        </div>
+        <select
+          value={selectedYear ?? ''}
+          onChange={e =>
+            setSelectedYear(e.target.value ? Number(e.target.value) : null)
+          }
+          className="rounded border border-gray-300 px-3 py-1.5 text-sm text-gray-700 cursor-pointer"
+        >
+          <option value="">年</option>
+          {allYears.map(year => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </select>
 
-        {/* リセット */}
         {hasFilter && (
-          <div className="flex items-center gap-3">
+          <>
             <span className="text-sm text-gray-500">
               {filteredPosts.length} 件
             </span>
@@ -219,9 +196,9 @@ export const BlogPostList = ({ posts, allTags, allYears }: Props) => {
               onClick={handleReset}
               className="text-sm text-blue-500 hover:text-blue-700 cursor-pointer"
             >
-              フィルターをリセット
+              リセット
             </button>
-          </div>
+          </>
         )}
       </div>
 
