@@ -11,6 +11,7 @@ export const tag = z.enum([
   '登壇',
   'スタッフ',
 ])
+export type Tag = z.infer<typeof tag>
 
 export const blogSchema = z.object({
   title: z.string(),

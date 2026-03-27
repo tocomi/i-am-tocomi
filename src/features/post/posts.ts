@@ -1,8 +1,9 @@
 import { getCollection } from 'astro:content'
 import type { Blog } from '@/content/types'
+import { tag } from '@/content/types'
 import { externalPosts } from '@/content/external-posts'
 
-type Post = Blog & {
+export type Post = Blog & {
   id: string
 }
 
@@ -11,7 +12,7 @@ const mergedPosts: Post[] = [
   ...posts.map(post => ({ ...post.data, id: post.id })),
   ...externalPosts.map(post => ({ ...post, id: post.external?.url ?? '' })),
 ]
-const sortedPosts = mergedPosts.sort(
+export const sortedPosts = mergedPosts.sort(
   (a, b) => b.pubDate.getTime() - a.pubDate.getTime()
 )
 
@@ -32,3 +33,6 @@ export const postsByYear = sortedPosts.reduce(
 export const years = Object.keys(postsByYear)
   .map(Number)
   .sort((a, b) => b - a)
+
+// 全タグ一覧
+export const allTags = tag.options

@@ -1,31 +1,20 @@
 ---
 import Layout from '@/layouts/layout.astro'
-import BlogCard from '@/components/blog-card.astro'
-import { years, postsByYear } from '@/features/post/posts'
+import { BlogPostList } from '@/components/blog-post-list'
+import { sortedPosts, allTags, years } from '@/features/post/posts'
+
+const serializedPosts = sortedPosts.map(post => ({
+  ...post,
+  pubDate: post.pubDate.toISOString(),
+}))
 ---
 
 <Layout title="Blog" ogpPath="blog">
   <h1 class="mb-8 text-3xl font-bold text-gray-900">Blog</h1>
-  <div class="flex flex-col gap-6">
-    {
-      years.map(year => (
-        <div>
-          <h2 class="mb-4 text-2xl font-semibold text-gray-800 border-b-2 border-gray-300 pb-1">
-            {year}
-          </h2>
-          <div class="flex flex-col gap-1">
-            {postsByYear[year].map(post => (
-              <BlogCard
-                href={post.external?.url ?? `/blog/${post.id}`}
-                title={post.title}
-                pubDate={post.pubDate}
-                tags={post.tags}
-                external={post.external}
-              />
-            ))}
-          </div>
-        </div>
-      ))
-    }
-  </div>
+  <BlogPostList
+    client:load
+    posts={serializedPosts}
+    allTags={allTags}
+    allYears={years}
+  />
 </Layout>
