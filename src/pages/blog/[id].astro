@@ -44,9 +44,6 @@ const formattedDate = formatFullDate(post.data.pubDate)
   }
 
   .article-header {
-    margin-bottom: 3rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #ebebeb;
     animation: fadeUp 0.35s ease both;
     animation-delay: 0.05s;
   }
@@ -64,6 +61,7 @@ const formattedDate = formatFullDate(post.data.pubDate)
     font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-size: clamp(1.3rem, 4vw, 1.85rem);
     font-weight: 400;
+    margin-bottom: 1rem;
     color: #111;
     line-height: 1.45;
     letter-spacing: 0.01em;
@@ -86,11 +84,11 @@ const formattedDate = formatFullDate(post.data.pubDate)
 
   .custom-md h2 {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 1.25rem;
+    font-weight: 600;
     letter-spacing: 0.06em;
     color: #222;
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-bottom: 1rem;
     padding-bottom: 0.625rem;
     border-bottom: 1px solid #ebebeb;
@@ -99,18 +97,18 @@ const formattedDate = formatFullDate(post.data.pubDate)
 
   .custom-md h3 {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 0.875rem;
+    font-size: 1.1rem;
     font-weight: 500;
     letter-spacing: 0.05em;
     color: #333;
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
     padding-left: 0.75rem;
     border-left: 2px solid #ddd;
   }
 
   .custom-md p {
-    margin-bottom: 1.1rem;
+    margin-bottom: 0.5rem;
   }
 
   .custom-md a {
@@ -118,7 +116,9 @@ const formattedDate = formatFullDate(post.data.pubDate)
     text-decoration: underline;
     text-decoration-color: #ccc;
     text-underline-offset: 3px;
-    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    transition:
+      color 0.2s ease,
+      text-decoration-color 0.2s ease;
   }
 
   .custom-md a:hover {
