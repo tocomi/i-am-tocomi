@@ -19,69 +19,34 @@ const formattedDate = formatFullDate(post.data.pubDate)
 ---
 
 <BlogLayout title={post.data.title} ogpPath={`blog/${post.id}`}>
-  <div class="article-nav">
+  <div class="mb-10 [animation:fadeUp_0.3s_ease_both]">
     <BackToBlogs />
   </div>
 
-  <header class="article-header">
-    <time class="article-date">{formattedDate}</time>
-    <h1 class="article-title">{post.data.title}</h1>
+  <header class="[animation:fadeUp_0.35s_ease_both] [animation-delay:0.05s]">
+    <time class="block font-mono text-xs tracking-widest text-gray-400 mb-3.5">
+      {formattedDate}
+    </time>
+    <h1
+      class="font-mono text-[clamp(1.3rem,4vw,1.85rem)] font-normal mb-4 text-gray-900 leading-[1.45]"
+    >
+      {post.data.title}
+    </h1>
   </header>
 
-  <div class="prose-light custom-md">
+  <div
+    class="custom-md text-base leading-[1.9] text-gray-600 [animation:fadeUp_0.4s_ease_both] [animation-delay:0.1s]"
+  >
     <Content />
   </div>
 
-  <div class="article-footer">
+  <div class="mt-16 pt-8 border-t border-gray-200">
     <BackToBlogs />
   </div>
 </BlogLayout>
 
 <style is:global>
-  .article-nav {
-    margin-bottom: 2.5rem;
-    animation: fadeUp 0.3s ease both;
-  }
-
-  .article-header {
-    animation: fadeUp 0.35s ease both;
-    animation-delay: 0.05s;
-  }
-
-  .article-date {
-    display: block;
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: #999;
-    margin-bottom: 0.875rem;
-  }
-
-  .article-title {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: clamp(1.3rem, 4vw, 1.85rem);
-    font-weight: 400;
-    margin-bottom: 1rem;
-    color: #111;
-    line-height: 1.45;
-    letter-spacing: 0.01em;
-  }
-
-  .article-footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid #ebebeb;
-  }
-
   /* ── Prose ── */
-  .prose-light {
-    font-size: 0.975rem;
-    line-height: 1.9;
-    color: #555;
-    animation: fadeUp 0.4s ease both;
-    animation-delay: 0.1s;
-  }
-
   .custom-md h2 {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-size: 1.25rem;

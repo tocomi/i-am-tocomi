@@ -7,15 +7,17 @@ import { years, postsByYear } from '@/features/post/posts'
 <BlogLayout title="Blog" ogpPath="blog">
   <h1 class="text-3xl font-bold mb-6">Blog</h1>
 
-  <div class="posts-container">
+  <div class="flex flex-col gap-10">
     {
       years.map(year => (
         <section class="year-section">
-          <div class="year-header">
-            <span class="year-label">{year}</span>
-            <div class="year-line" />
+          <div class="flex items-center gap-4 mb-3">
+            <span class="font-mono text-sm tracking-[0.22em] text-gray-400 shrink-0">
+              {year}
+            </span>
+            <div class="flex-1 h-px bg-gray-200" />
           </div>
-          <div class="posts-list">
+          <div>
             {postsByYear[year].map(post => (
               <BlogCard
                 href={post.external?.url ?? `/blog/${post.id}`}
@@ -33,64 +35,19 @@ import { years, postsByYear } from '@/features/post/posts'
 </BlogLayout>
 
 <style>
-  .posts-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-
   .year-section {
     animation: fadeUp 0.4s ease both;
   }
 
-  .year-section:nth-child(1) {
-    animation-delay: 0.05s;
-  }
-  .year-section:nth-child(2) {
-    animation-delay: 0.1s;
-  }
-  .year-section:nth-child(3) {
-    animation-delay: 0.15s;
-  }
-  .year-section:nth-child(4) {
-    animation-delay: 0.2s;
-  }
-  .year-section:nth-child(5) {
-    animation-delay: 0.25s;
-  }
-  .year-section:nth-child(6) {
-    animation-delay: 0.3s;
-  }
-
-  .year-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .year-label {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.22em;
-    color: #999;
-    flex-shrink: 0;
-  }
-
-  .year-line {
-    flex: 1;
-    height: 1px;
-    background: #e8e8e8;
-  }
+  .year-section:nth-child(1) { animation-delay: 0.05s; }
+  .year-section:nth-child(2) { animation-delay: 0.1s; }
+  .year-section:nth-child(3) { animation-delay: 0.15s; }
+  .year-section:nth-child(4) { animation-delay: 0.2s; }
+  .year-section:nth-child(5) { animation-delay: 0.25s; }
+  .year-section:nth-child(6) { animation-delay: 0.3s; }
 
   @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 </style>

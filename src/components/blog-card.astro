@@ -12,89 +12,25 @@ const { href, title, pubDate, tags, external } = Astro.props
 const formattedDate = formatFullDate(pubDate)
 ---
 
-<article class="blog-card">
-  <a href={`${href}/`} class="card-link" target={external ? '_blank' : '_self'}>
-    <div class="card-header">
-      <div class="card-tags">
-        {tags.map(tag => <span class="tag">{tag}</span>)}
+<article class="border-b border-gray-200 py-5 first:pt-0 last:border-b-0 group">
+  <a href={`${href}/`} class="block no-underline" target={external ? '_blank' : '_self'}>
+    <div class="flex items-center justify-between gap-4 mb-2">
+      <div class="flex flex-wrap gap-1 items-center">
+        {
+          tags.map(tag => (
+            <span class="font-mono text-[9px] tracking-widest uppercase text-gray-500 border border-gray-300 px-1.5 leading-[1.7]">
+              {tag}
+            </span>
+          ))
+        }
       </div>
-      <time class="card-date">{formattedDate}</time>
+      <time class="font-mono text-xs tracking-wider text-gray-400 shrink-0 transition-colors group-hover:text-gray-500">
+        {formattedDate}
+      </time>
     </div>
-    <h2 class="card-title">
+    <h2 class="font-mono text-base font-normal text-gray-600 leading-[1.55] transition-colors group-hover:text-black">
       {title}
       {external && <ExternalIcons platform={external.platform} />}
     </h2>
   </a>
 </article>
-
-<style>
-  .blog-card {
-    border-bottom: 1px solid #ebebeb;
-    padding: 1.25rem 0;
-  }
-
-  .blog-card:first-child {
-    padding-top: 0;
-  }
-
-  .blog-card:last-child {
-    border-bottom: none;
-  }
-
-  .card-link {
-    display: block;
-    text-decoration: none;
-  }
-
-  .card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.45rem;
-  }
-
-  .card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    align-items: center;
-  }
-
-  .tag {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #888;
-    border: 1px solid #ccc;
-    padding: 0.1rem 0.45rem;
-    line-height: 1.7;
-  }
-
-  .card-date {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 11px;
-    letter-spacing: 0.05em;
-    color: #999;
-    flex-shrink: 0;
-  }
-
-  .card-title {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 1rem;
-    font-weight: 400;
-    color: #555;
-    line-height: 1.55;
-    letter-spacing: 0.01em;
-    transition: color 0.2s ease;
-  }
-
-  .blog-card:hover .card-title {
-    color: #000;
-  }
-
-  .blog-card:hover .card-date {
-    color: #666;
-  }
-</style>
