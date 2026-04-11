@@ -5,10 +5,7 @@ import { years, postsByYear } from '@/features/post/posts'
 ---
 
 <BlogLayout title="Blog" ogpPath="blog">
-  <header class="page-header">
-    <h1 class="page-title">BLOG</h1>
-    <p class="page-subtitle">— writings &amp; thoughts</p>
-  </header>
+  <h1 class="text-3xl font-bold mb-6">Blog</h1>
 
   <div class="posts-container">
     {
@@ -36,30 +33,6 @@ import { years, postsByYear } from '@/features/post/posts'
 </BlogLayout>
 
 <style>
-  .page-header {
-    margin-bottom: 3.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #ebebeb;
-    animation: fadeUp 0.4s ease both;
-  }
-
-  .page-title {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: clamp(2.5rem, 9vw, 4.5rem);
-    font-weight: 300;
-    letter-spacing: 0.35em;
-    color: #111;
-    line-height: 1;
-    margin-bottom: 0.6rem;
-  }
-
-  .page-subtitle {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
-    color: #ccc;
-  }
-
   .posts-container {
     display: flex;
     flex-direction: column;
@@ -70,12 +43,24 @@ import { years, postsByYear } from '@/features/post/posts'
     animation: fadeUp 0.4s ease both;
   }
 
-  .year-section:nth-child(1) { animation-delay: 0.05s; }
-  .year-section:nth-child(2) { animation-delay: 0.1s; }
-  .year-section:nth-child(3) { animation-delay: 0.15s; }
-  .year-section:nth-child(4) { animation-delay: 0.2s; }
-  .year-section:nth-child(5) { animation-delay: 0.25s; }
-  .year-section:nth-child(6) { animation-delay: 0.3s; }
+  .year-section:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .year-section:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .year-section:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+  .year-section:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+  .year-section:nth-child(5) {
+    animation-delay: 0.25s;
+  }
+  .year-section:nth-child(6) {
+    animation-delay: 0.3s;
+  }
 
   .year-header {
     display: flex;
@@ -88,14 +73,14 @@ import { years, postsByYear } from '@/features/post/posts'
     font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.22em;
-    color: #ccc;
+    color: #999;
     flex-shrink: 0;
   }
 
   .year-line {
     flex: 1;
     height: 1px;
-    background: #ebebeb;
+    background: #e8e8e8;
   }
 
   @keyframes fadeUp {
