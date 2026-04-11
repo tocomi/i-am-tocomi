@@ -1,10 +1,9 @@
----
-import { Icon } from 'astro-icon/components'
----
-
-<div class="flex items-center gap-1">
-  <Icon name="mdi:chevron-left" />
-  <a href="/blog" class="inline-block text-gray-600 hover:underline">
-    一覧にもどる
-  </a>
-</div>
+<a
+  href="/blog/"
+  class="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-gray-400 no-underline transition-colors hover:text-gray-900 group"
+>
+  <span class="inline-block transition-transform group-hover:-translate-x-1"
+    >←</span
+  >
+  <span>back to blog</span>
+</a>

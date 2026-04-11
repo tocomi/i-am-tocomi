@@ -1,1 +1,8 @@
 @import 'tailwindcss';
+
+@layer base {
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    color: #444;
+  }
+}

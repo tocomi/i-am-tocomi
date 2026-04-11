@@ -5,15 +5,19 @@ import { years, postsByYear } from '@/features/post/posts'
 ---
 
 <Layout title="Blog" ogpPath="blog">
-  <h1 class="mb-8 text-3xl font-bold text-gray-900">Blog</h1>
-  <div class="flex flex-col gap-6">
+  <h1 class="text-3xl font-bold mb-6">Blog</h1>
+
+  <div class="flex flex-col gap-10">
     {
       years.map(year => (
-        <div>
-          <h2 class="mb-4 text-2xl font-semibold text-gray-800 border-b-2 border-gray-300 pb-1">
-            {year}
-          </h2>
-          <div class="flex flex-col gap-1">
+        <section class="year-section">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="font-mono text-sm tracking-widest text-gray-400 shrink-0">
+              {year}
+            </span>
+            <div class="flex-1 h-px bg-gray-200" />
+          </div>
+          <div>
             {postsByYear[year].map(post => (
               <BlogCard
                 href={post.external?.url ?? `/blog/${post.id}`}
@@ -24,8 +28,44 @@ import { years, postsByYear } from '@/features/post/posts'
               />
             ))}
           </div>
-        </div>
+        </section>
       ))
     }
   </div>
 </Layout>
+
+<style>
+  .year-section {
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .year-section:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .year-section:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .year-section:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+  .year-section:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+  .year-section:nth-child(5) {
+    animation-delay: 0.25s;
+  }
+  .year-section:nth-child(6) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
