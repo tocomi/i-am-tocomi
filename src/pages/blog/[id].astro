@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content'
 
 import BackToBlogs from '@/components/back-to-blogs.astro'
-import BlogLayout from '@/layouts/blog-layout.astro'
+import Layout from '@/layouts/layout.astro'
 import { formatFullDate } from '@/utils/date-util'
 
 export async function getStaticPaths() {
@@ -18,7 +18,7 @@ const { Content } = await render(post)
 const formattedDate = formatFullDate(post.data.pubDate)
 ---
 
-<BlogLayout title={post.data.title} ogpPath={`blog/${post.id}`}>
+<Layout title={post.data.title} ogpPath={`blog/${post.id}`}>
   <div class="mb-10 [animation:fadeUp_0.3s_ease_both]">
     <BackToBlogs />
   </div>
@@ -41,7 +41,7 @@ const formattedDate = formatFullDate(post.data.pubDate)
   <div class="mt-16 pt-8 border-t border-gray-200">
     <BackToBlogs />
   </div>
-</BlogLayout>
+</Layout>
 
 <style is:global>
   /* ── Prose ── */
