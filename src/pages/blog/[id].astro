@@ -2,9 +2,8 @@
 import { getCollection, render } from 'astro:content'
 
 import BackToBlogs from '@/components/back-to-blogs.astro'
-import Layout from '@/layouts/layout.astro'
+import BlogLayout from '@/layouts/blog-layout.astro'
 import { formatFullDate } from '@/utils/date-util'
-import { Icon } from 'astro-icon/components'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -19,82 +18,231 @@ const { Content } = await render(post)
 const formattedDate = formatFullDate(post.data.pubDate)
 ---
 
-<Layout title={post.data.title} ogpPath={`blog/${post.id}`}>
-  <div class="mb-4">
+<BlogLayout title={post.data.title} ogpPath={`blog/${post.id}`}>
+  <div class="article-nav">
     <BackToBlogs />
   </div>
-  <h1 class="text-3xl font-bold mb-1">{post.data.title}</h1>
-  <section class="flex items-center justify-end mb-4 gap-0.5">
-    <Icon name="mdi:clock-outline" />
-    <p class="text-gray-600">
-      {formattedDate}
-    </p>
-  </section>
-  <div class="prose prose-lg custom-md">
+
+  <header class="article-header">
+    <time class="article-date">{formattedDate}</time>
+    <h1 class="article-title">{post.data.title}</h1>
+  </header>
+
+  <div class="prose-light custom-md">
     <Content />
   </div>
-  <div class="mt-8">
+
+  <div class="article-footer">
     <BackToBlogs />
   </div>
-</Layout>
+</BlogLayout>
 
 <style is:global>
+  .article-nav {
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.3s ease both;
+  }
+
+  .article-header {
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #ebebeb;
+    animation: fadeUp 0.35s ease both;
+    animation-delay: 0.05s;
+  }
+
+  .article-date {
+    display: block;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: #bbb;
+    margin-bottom: 0.875rem;
+  }
+
+  .article-title {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: clamp(1.3rem, 4vw, 1.85rem);
+    font-weight: 400;
+    color: #111;
+    line-height: 1.45;
+    letter-spacing: 0.01em;
+  }
+
+  .article-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ebebeb;
+  }
+
+  /* ── Prose ── */
+  .prose-light {
+    font-size: 0.975rem;
+    line-height: 1.9;
+    color: #555;
+    animation: fadeUp 0.4s ease both;
+    animation-delay: 0.1s;
+  }
+
   .custom-md h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 2rem;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: #222;
+    margin-top: 3rem;
     margin-bottom: 1rem;
-    padding-bottom: 0.125rem;
-    border-bottom: 3px solid;
-    border-image: linear-gradient(90deg, #3b82f6, #8b5cf6) 1;
+    padding-bottom: 0.625rem;
+    border-bottom: 1px solid #ebebeb;
     position: relative;
   }
 
   .custom-md h3 {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-top: 1rem;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: #333;
+    margin-top: 2rem;
     margin-bottom: 0.75rem;
-    border-left: 4px solid;
-    border-image: linear-gradient(180deg, #3b82f6, #8b5cf6) 1;
-    padding-left: 0.5rem;
-  }
-
-  .custom-md a {
-    color: #3b82f6;
-    text-decoration: underline;
-  }
-
-  .custom-md a:hover {
-    opacity: 0.8;
+    padding-left: 0.75rem;
+    border-left: 2px solid #ddd;
   }
 
   .custom-md p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .custom-md a {
+    color: #333;
+    text-decoration: underline;
+    text-decoration-color: #ccc;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+
+  .custom-md a:hover {
+    color: #111;
+    text-decoration-color: #888;
   }
 
   .custom-md ul {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.1rem;
+    padding-left: 0;
   }
 
   .custom-md ul li {
-    margin-bottom: 0.25rem;
-    list-style-type: disc;
-    margin-left: 1rem;
-    padding-left: 0.25rem;
+    margin-bottom: 0.4rem;
+    list-style: none;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .custom-md ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #ccc;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8em;
+  }
+
+  .custom-md ol {
+    margin-bottom: 1.1rem;
+    counter-reset: ol-counter;
+    padding-left: 0;
+  }
+
+  .custom-md ol li {
+    margin-bottom: 0.4rem;
+    list-style: none;
+    padding-left: 2rem;
+    position: relative;
+    counter-increment: ol-counter;
+  }
+
+  .custom-md ol li::before {
+    content: counter(ol-counter, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    color: #ccc;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75em;
+    top: 0.2em;
   }
 
   .custom-md blockquote {
-    margin-bottom: 0.5rem;
-    padding-left: 1rem;
-    border-left: 3px solid #ccc;
+    margin: 1.75rem 0;
+    padding: 0.875rem 1.25rem;
+    border-left: 2px solid #e0e0e0;
+    background: #fafafa;
+    color: #999;
+    font-style: italic;
+  }
+
+  .custom-md blockquote p {
+    margin-bottom: 0;
   }
 
   .custom-md pre {
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
-    background-color: #f5f5f5;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
+    margin: 1.75rem 0;
+    padding: 1.25rem 1.5rem;
+    background: #f7f7f7;
+    border: 1px solid #ebebeb;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.825rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  .custom-md code {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.83em;
+    color: #444;
+    background: #f4f4f4;
+    padding: 0.15em 0.4em;
+    border: 1px solid #e8e8e8;
+  }
+
+  .custom-md pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  .custom-md img {
+    max-width: 100%;
+    border: 1px solid #ebebeb;
+    display: block;
+    margin: 1.75rem auto;
+  }
+
+  .custom-md strong {
+    color: #222;
+    font-weight: 600;
+  }
+
+  .custom-md em {
+    color: #777;
+  }
+
+  .custom-md hr {
+    border: none;
+    border-top: 1px solid #ebebeb;
+    margin: 2.5rem 0;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>

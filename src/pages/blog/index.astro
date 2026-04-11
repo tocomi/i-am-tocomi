@@ -1,19 +1,24 @@
 ---
-import Layout from '@/layouts/layout.astro'
+import BlogLayout from '@/layouts/blog-layout.astro'
 import BlogCard from '@/components/blog-card.astro'
 import { years, postsByYear } from '@/features/post/posts'
 ---
 
-<Layout title="Blog" ogpPath="blog">
-  <h1 class="mb-8 text-3xl font-bold text-gray-900">Blog</h1>
-  <div class="flex flex-col gap-6">
+<BlogLayout title="Blog" ogpPath="blog">
+  <header class="page-header">
+    <h1 class="page-title">BLOG</h1>
+    <p class="page-subtitle">— writings &amp; thoughts</p>
+  </header>
+
+  <div class="posts-container">
     {
       years.map(year => (
-        <div>
-          <h2 class="mb-4 text-2xl font-semibold text-gray-800 border-b-2 border-gray-300 pb-1">
-            {year}
-          </h2>
-          <div class="flex flex-col gap-1">
+        <section class="year-section">
+          <div class="year-header">
+            <span class="year-label">{year}</span>
+            <div class="year-line" />
+          </div>
+          <div class="posts-list">
             {postsByYear[year].map(post => (
               <BlogCard
                 href={post.external?.url ?? `/blog/${post.id}`}
@@ -24,8 +29,83 @@ import { years, postsByYear } from '@/features/post/posts'
               />
             ))}
           </div>
-        </div>
+        </section>
       ))
     }
   </div>
-</Layout>
+</BlogLayout>
+
+<style>
+  .page-header {
+    margin-bottom: 3.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #ebebeb;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .page-title {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: clamp(2.5rem, 9vw, 4.5rem);
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    color: #111;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+  }
+
+  .page-subtitle {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: #ccc;
+  }
+
+  .posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .year-section {
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .year-section:nth-child(1) { animation-delay: 0.05s; }
+  .year-section:nth-child(2) { animation-delay: 0.1s; }
+  .year-section:nth-child(3) { animation-delay: 0.15s; }
+  .year-section:nth-child(4) { animation-delay: 0.2s; }
+  .year-section:nth-child(5) { animation-delay: 0.25s; }
+  .year-section:nth-child(6) { animation-delay: 0.3s; }
+
+  .year-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .year-label {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    color: #ccc;
+    flex-shrink: 0;
+  }
+
+  .year-line {
+    flex: 1;
+    height: 1px;
+    background: #ebebeb;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
