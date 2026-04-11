@@ -27,9 +27,7 @@ const formattedDate = formatFullDate(post.data.pubDate)
     <time class="block font-mono text-xs tracking-widest text-gray-400 mb-3.5">
       {formattedDate}
     </time>
-    <h1
-      class="font-mono text-[clamp(1.3rem,4vw,1.85rem)] font-normal mb-4 text-gray-900 leading-[1.45]"
-    >
+    <h1 class="font-mono text-2xl font-bold mb-4 text-gray-900 leading-[1.45]">
       {post.data.title}
     </h1>
   </header>
@@ -48,8 +46,7 @@ const formattedDate = formatFullDate(post.data.pubDate)
 <style is:global>
   /* ── Prose ── */
   .custom-md h2 {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 600;
     letter-spacing: 0.06em;
     color: #222;
@@ -61,13 +58,12 @@ const formattedDate = formatFullDate(post.data.pubDate)
   }
 
   .custom-md h3 {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 1.15rem;
+    font-weight: 600;
     letter-spacing: 0.05em;
     color: #333;
     margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     padding-left: 0.75rem;
     border-left: 2px solid #ddd;
   }
@@ -108,7 +104,6 @@ const formattedDate = formatFullDate(post.data.pubDate)
     position: absolute;
     left: 0;
     color: #ccc;
-    font-family: 'JetBrains Mono', monospace;
     font-size: 0.8em;
   }
 
@@ -131,7 +126,6 @@ const formattedDate = formatFullDate(post.data.pubDate)
     position: absolute;
     left: 0;
     color: #ccc;
-    font-family: 'JetBrains Mono', monospace;
     font-size: 0.75em;
     top: 0.2em;
   }
@@ -155,14 +149,12 @@ const formattedDate = formatFullDate(post.data.pubDate)
     background: #f7f7f7;
     border: 1px solid #ebebeb;
     overflow-x: auto;
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-size: 0.825rem;
     line-height: 1.7;
     color: #555;
   }
 
   .custom-md code {
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-size: 0.83em;
     color: #444;
     background: #f4f4f4;
