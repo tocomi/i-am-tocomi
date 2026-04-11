@@ -13,7 +13,11 @@ const formattedDate = formatFullDate(pubDate)
 ---
 
 <article class="border-b border-gray-200 py-5 first:pt-0 last:border-b-0 group">
-  <a href={`${href}/`} class="block no-underline" target={external ? '_blank' : '_self'}>
+  <a
+    href={`${href}/`}
+    class="block no-underline"
+    target={external ? '_blank' : '_self'}
+  >
     <div class="flex items-center justify-between gap-4 mb-2">
       <div class="flex flex-wrap gap-1 items-center">
         {
@@ -24,11 +28,15 @@ const formattedDate = formatFullDate(pubDate)
           ))
         }
       </div>
-      <time class="font-mono text-xs tracking-wider text-gray-400 shrink-0 transition-colors group-hover:text-gray-500">
+      <time
+        class="font-mono text-xs tracking-wider text-gray-400 shrink-0 transition-colors group-hover:text-gray-500"
+      >
         {formattedDate}
       </time>
     </div>
-    <h2 class="font-mono text-base font-normal text-gray-600 leading-[1.55] transition-colors group-hover:text-black">
+    <h2
+      class="font-mono text-base font-normal text-gray-600 leading-[1.55] transition-colors group-hover:text-black"
+    >
       {title}
       {external && <ExternalIcons platform={external.platform} />}
     </h2>
