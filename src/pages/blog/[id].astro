@@ -27,13 +27,13 @@ const formattedDate = formatFullDate(post.data.pubDate)
     <time class="block font-mono text-xs tracking-widest text-gray-400 mb-3.5">
       {formattedDate}
     </time>
-    <h1 class="font-mono text-2xl font-bold mb-4 text-gray-900 leading-[1.45]">
+    <h1 class="font-mono text-2xl font-bold mb-4 text-gray-900 leading-normal">
       {post.data.title}
     </h1>
   </header>
 
   <div
-    class="custom-md text-base leading-[1.9] text-gray-600 [animation:fadeUp_0.4s_ease_both] [animation-delay:0.1s]"
+    class="custom-md text-base leading-loose text-gray-600 [animation:fadeUp_0.4s_ease_both] [animation-delay:0.1s]"
   >
     <Content />
   </div>
