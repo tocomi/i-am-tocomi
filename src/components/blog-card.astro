@@ -22,20 +22,20 @@ const formattedDate = formatFullDate(pubDate)
       <div class="flex flex-wrap gap-1 items-center">
         {
           tags.map(tag => (
-            <span class="font-mono text-[9px] tracking-widest uppercase text-gray-500 border border-gray-300 px-1.5 leading-relaxed">
+            <span class="text-[9px] tracking-widest uppercase text-gray-500 border border-gray-300 px-1.5 leading-relaxed">
               {tag}
             </span>
           ))
         }
       </div>
       <time
-        class="font-mono text-xs tracking-wider text-gray-400 shrink-0 transition-colors group-hover:text-gray-500"
+        class="text-xs tracking-wider text-gray-400 shrink-0 transition-colors group-hover:text-gray-500"
       >
         {formattedDate}
       </time>
     </div>
     <h2
-      class="font-mono text-base font-normal text-gray-600 leading-normal transition-colors group-hover:text-black"
+      class="text-base font-normal text-gray-600 leading-normal transition-colors group-hover:text-black"
     >
       {title}
       {external && <ExternalIcons platform={external.platform} />}
