@@ -8,6 +8,14 @@ export type Talk = {
 
 export const talks: Talk[] = [
   {
+    date: new Date('2026-05-23'),
+    eventName: 'TSKaigi 2026',
+    eventUrl: 'https://2026.tskaigi.org/talks/72',
+    title: 'TypeScript Compiler はどのように未使用変数を検出しているのか？',
+    slideUrl:
+      'https://speakerdeck.com/tocomi/typescript-compiler-hadonoyouniwei-shi-yong-bian-shu-wojian-chu-siteirunoka',
+  },
+  {
     date: new Date('2025-09-13'),
     eventName: 'M-1 グランプリ 2025',
     eventUrl: 'https://www.m-1gp.com/combi/35495.html',
