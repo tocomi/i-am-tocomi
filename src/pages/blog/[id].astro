@@ -24,7 +24,7 @@ const formattedDate = formatFullDate(post.data.pubDate)
   </div>
 
   <header class="[animation:fadeUp_0.35s_ease_both] [animation-delay:0.05s]">
-    <time class="block text-xs tracking-widest text-gray-400 mb-3.5">
+    <time class="block text-xs tracking-widest text-gray-500 mb-3.5">
       {formattedDate}
     </time>
     <h1 class="text-2xl font-bold mb-4 text-gray-900 leading-normal">
@@ -33,7 +33,7 @@ const formattedDate = formatFullDate(post.data.pubDate)
   </header>
 
   <div
-    class="custom-md text-base leading-loose text-gray-600 [animation:fadeUp_0.4s_ease_both] [animation-delay:0.1s]"
+    class="custom-md text-base leading-loose text-gray-700 [animation:fadeUp_0.4s_ease_both] [animation-delay:0.1s]"
   >
     <Content />
   </div>
@@ -103,7 +103,7 @@ const formattedDate = formatFullDate(post.data.pubDate)
     content: '—';
     position: absolute;
     left: 0;
-    color: #ccc;
+    color: #aaa;
     font-size: 0.8em;
   }
 
@@ -125,7 +125,7 @@ const formattedDate = formatFullDate(post.data.pubDate)
     content: counter(ol-counter, decimal-leading-zero);
     position: absolute;
     left: 0;
-    color: #ccc;
+    color: #aaa;
     font-size: 0.75em;
     top: 0.2em;
   }
@@ -133,9 +133,9 @@ const formattedDate = formatFullDate(post.data.pubDate)
   .custom-md blockquote {
     margin: 1.75rem 0;
     padding: 0.875rem 1.25rem;
-    border-left: 2px solid #e0e0e0;
+    border-left: 2px solid #d8d8d8;
     background: #fafafa;
-    color: #999;
+    color: #777;
     font-style: italic;
   }
 
@@ -151,12 +151,12 @@ const formattedDate = formatFullDate(post.data.pubDate)
     overflow-x: auto;
     font-size: 0.825rem;
     line-height: 1.7;
-    color: #555;
+    color: #444;
   }
 
   .custom-md code {
     font-size: 0.83em;
-    color: #444;
+    color: #333;
     background: #f4f4f4;
     padding: 0.15em 0.4em;
     border: 1px solid #e8e8e8;
@@ -183,7 +183,7 @@ const formattedDate = formatFullDate(post.data.pubDate)
   }
 
   .custom-md em {
-    color: #777;
+    color: #666;
   }
 
   .custom-md hr {
