@@ -19,178 +19,170 @@ const formattedDate = formatFullDate(post.data.pubDate)
 ---
 
 <Layout title={post.data.title} ogpPath={`blog/${post.id}`}>
-  <div class="mb-10 [animation:fadeUp_0.3s_ease_both]">
+  <div class="-mt-2 mb-2 [animation:fadeUp_0.3s_ease_both]">
     <BackToBlogs />
   </div>
 
-  <header class="[animation:fadeUp_0.35s_ease_both] [animation-delay:0.05s]">
-    <time class="block text-xs tracking-widest text-gray-500 mb-3.5">
-      {formattedDate}
-    </time>
-    <h1 class="text-2xl font-bold mb-4 text-gray-900 leading-normal">
-      {post.data.title}
-    </h1>
+  <header
+    class="mb-7 [animation:fadeUp_0.35s_ease_both] [animation-delay:0.05s]"
+  >
+    <h1 class="page-title mb-3.5">{post.data.title}</h1>
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+      <time
+        datetime={post.data.pubDate.toISOString()}
+        class="text-sm text-muted tabular-nums"
+      >
+        {formattedDate}
+      </time>
+      <div class="flex flex-wrap gap-1.5">
+        {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+      </div>
+    </div>
   </header>
 
-  <div
-    class="custom-md text-base leading-loose text-gray-700 [animation:fadeUp_0.4s_ease_both] [animation-delay:0.1s]"
+  <article
+    class="card custom-md [animation:fadeUp_0.4s_ease_both] [animation-delay:0.1s]"
   >
     <Content />
-  </div>
+  </article>
 
-  <div class="mt-16 pt-8 border-t border-gray-200">
+  <div class="mt-6">
     <BackToBlogs />
   </div>
 </Layout>
 
 <style is:global>
   /* ── Prose ── */
+  .custom-md {
+    font-size: 0.9375rem;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+
+    @media (width >= 40rem) {
+      padding: 2.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  .custom-md > :first-child {
+    margin-top: 0;
+  }
+
+  .custom-md > :last-child {
+    margin-bottom: 0;
+  }
+
   .custom-md h2 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: #222;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.125rem;
-    border-bottom: 1px solid #ebebeb;
-    position: relative;
+    margin: 2.5rem 0 1.125rem;
+
+    @media (width >= 40rem) {
+      margin-top: 3rem;
+    }
   }
 
   .custom-md h3 {
-    font-size: 1.15rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: #333;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-    padding-left: 0.75rem;
-    border-left: 2px solid #ddd;
+    margin: 2.25rem 0 0.625rem;
+    color: var(--color-ink);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    font-feature-settings: 'palt';
+  }
+
+  .custom-md h2 + h3 {
+    margin-top: 1.25rem;
   }
 
   .custom-md p {
-    margin-bottom: 0.5rem;
-    line-height: 1.5;
+    margin-bottom: 1em;
   }
 
   .custom-md a {
-    color: #333;
+    color: var(--color-accent-text);
     text-decoration: underline;
-    text-decoration-color: #ccc;
-    text-underline-offset: 3px;
-    transition:
-      color 0.2s ease,
-      text-decoration-color 0.2s ease;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--color-accent-line);
+    text-underline-offset: 0.22em;
+    transition: text-decoration-color 0.12s ease;
   }
 
   .custom-md a:hover {
-    color: #111;
-    text-decoration-color: #888;
+    text-decoration-color: var(--color-accent);
+  }
+
+  .custom-md ul,
+  .custom-md ol {
+    margin-bottom: 1em;
+    padding-left: 1.5em;
   }
 
   .custom-md ul {
-    margin-bottom: 1.1rem;
-    padding-left: 0;
-  }
-
-  .custom-md ul li {
-    margin-bottom: 0.4rem;
-    list-style: none;
-    padding-left: 1.5rem;
-    position: relative;
-  }
-
-  .custom-md ul li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: #aaa;
-    font-size: 0.8em;
+    list-style: disc;
   }
 
   .custom-md ol {
-    margin-bottom: 1.1rem;
-    counter-reset: ol-counter;
-    padding-left: 0;
+    list-style: decimal;
   }
 
-  .custom-md ol li {
-    margin-bottom: 0.4rem;
-    list-style: none;
-    padding-left: 2rem;
-    position: relative;
-    counter-increment: ol-counter;
+  .custom-md li {
+    margin-bottom: 0.25em;
   }
 
-  .custom-md ol li::before {
-    content: counter(ol-counter, decimal-leading-zero);
-    position: absolute;
-    left: 0;
-    color: #aaa;
-    font-size: 0.75em;
-    top: 0.2em;
+  .custom-md li::marker {
+    color: var(--color-muted);
+  }
+
+  .custom-md li > ul,
+  .custom-md li > ol {
+    margin: 0.25em 0 0;
   }
 
   .custom-md blockquote {
-    margin: 1.75rem 0;
-    padding: 0.875rem 1.25rem;
-    border-left: 2px solid #d8d8d8;
-    background: #fafafa;
-    color: #777;
-    font-style: italic;
+    margin: 1.5em 0;
+    padding-left: 1em;
+    border-left: 3px solid var(--color-line);
+    color: var(--color-muted);
   }
 
-  .custom-md blockquote p {
+  .custom-md blockquote p:last-child {
     margin-bottom: 0;
   }
 
   .custom-md pre {
-    margin: 1.75rem 0;
-    padding: 1.25rem 1.5rem;
-    background: #f7f7f7;
-    border: 1px solid #ebebeb;
+    margin: 1.5em 0;
+    padding: 1rem;
     overflow-x: auto;
-    font-size: 0.825rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
     line-height: 1.7;
-    color: #444;
+    letter-spacing: 0;
   }
 
-  .custom-md code {
-    font-size: 0.83em;
-    color: #333;
-    background: #f4f4f4;
+  .custom-md :not(pre) > code {
     padding: 0.15em 0.4em;
-    border: 1px solid #e8e8e8;
-  }
-
-  .custom-md pre code {
-    background: none;
-    border: none;
-    padding: 0;
-    font-size: inherit;
-    color: inherit;
+    border-radius: 0.25rem;
+    background: var(--color-ground);
+    font-size: 0.9em;
+    letter-spacing: 0;
   }
 
   .custom-md img {
-    max-width: 100%;
-    border: 1px solid #ebebeb;
     display: block;
-    margin: 1.75rem auto;
+    max-width: 100%;
+    margin: 1.5em auto;
+    border-radius: 0.5rem;
   }
 
   .custom-md strong {
-    color: #222;
-    font-weight: 600;
-  }
-
-  .custom-md em {
-    color: #666;
+    color: var(--color-ink);
+    font-weight: 700;
   }
 
   .custom-md hr {
-    border: none;
-    border-top: 1px solid #ebebeb;
     margin: 2.5rem 0;
+    border: none;
+    border-top: 1px solid var(--color-line);
   }
 
   @keyframes fadeUp {

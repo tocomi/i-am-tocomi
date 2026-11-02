@@ -1,14 +1,20 @@
 import { getCollection } from 'astro:content'
 import type { Blog } from '@/content/types'
 import { externalPosts } from '@/content/external-posts'
+import { createExcerpt } from './excerpt'
 
 type Post = Blog & {
   id: string
+  excerpt?: string
 }
 
 const posts = await getCollection('blog')
 const mergedPosts: Post[] = [
-  ...posts.map(post => ({ ...post.data, id: post.id })),
+  ...posts.map(post => ({
+    ...post.data,
+    id: post.id,
+    excerpt: createExcerpt(post.body ?? ''),
+  })),
   ...externalPosts.map(post => ({ ...post, id: post.external?.url ?? '' })),
 ]
 const sortedPosts = mergedPosts.sort(

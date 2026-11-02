@@ -1,54 +1,54 @@
 ---
-import Portrait from '@/components/portrait.astro'
+import { Image } from 'astro:assets'
+import portrait from '@/assets/portrait.jpg'
 
 const currentPath = Astro.url.pathname
+
+const links = [
+  { href: '/', label: 'Home', current: currentPath === '/' },
+  {
+    href: '/about/',
+    label: 'About',
+    current: currentPath.startsWith('/about'),
+  },
+  { href: '/blog/', label: 'Blog', current: currentPath.startsWith('/blog') },
+]
 ---
 
-<header class="sticky top-4 z-50 px-4">
-  <nav
-    class="mx-auto flex max-w-3xl items-center justify-between rounded-full border border-gray-200 bg-white/70 pl-2 pr-6 shadow-sm backdrop-blur-xs"
+<header class="sticky top-0 z-50 border-b border-line bg-surface">
+  <div
+    class="mx-auto flex max-w-[808px] items-center justify-between gap-3 px-4 py-2 sm:px-6"
   >
-    {
-      currentPath === '/' ? (
-        <span class="text-xl font-bold text-gray-900 pl-4">tocomi</span>
-      ) : (
-        <Portrait size={40} />
-      )
-    }
-    <div class="flex gap-4 py-4 text-sm">
-      <a
-        href="/"
-        class:list={[
-          'transition-colors',
-          currentPath === '/'
-            ? 'text-blue-600 font-semibold'
-            : 'text-gray-600 hover:text-gray-900',
-        ]}
-      >
-        Home
-      </a>
-      <a
-        href="/about/"
-        class:list={[
-          'transition-colors',
-          currentPath.startsWith('/about')
-            ? 'text-blue-600 font-semibold'
-            : 'text-gray-600 hover:text-gray-900',
-        ]}
-      >
-        About
-      </a>
-      <a
-        href="/blog/"
-        class:list={[
-          'transition-colors',
-          currentPath.startsWith('/blog')
-            ? 'text-blue-600 font-semibold'
-            : 'text-gray-600 hover:text-gray-900',
-        ]}
-      >
-        Blog
-      </a>
-    </div>
-  </nav>
+    <a
+      href="/"
+      class="inline-flex min-h-11 items-center gap-2.5 text-[17px] font-bold tracking-[-0.01em] text-ink"
+    >
+      <Image
+        src={portrait}
+        alt=""
+        width={56}
+        height={56}
+        class="size-7 rounded-full object-cover"
+      />
+      tocomi
+    </a>
+    <nav aria-label="メイン" class="-mr-2.5 flex items-center gap-1">
+      {
+        links.map(({ href, label, current }) => (
+          <a
+            href={href}
+            aria-current={current ? 'page' : undefined}
+            class:list={[
+              'inline-flex min-h-11 items-center px-2.5 text-sm font-medium transition-colors hover:text-ink',
+              current
+                ? 'text-ink shadow-[inset_0_-2px_0_var(--color-accent)]'
+                : 'text-muted',
+            ]}
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
 </header>

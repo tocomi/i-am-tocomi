@@ -1,44 +1,55 @@
 ---
 import type { Blog } from '@/content/types'
-import ExternalIcons from '@/components/external-icons.astro'
-import { formatFullDate } from '@/utils/date-util'
+import { formatMonthDay } from '@/utils/date-util'
 
 type Props = Blog & {
   href: string
+  excerpt?: string
 }
 
-const { href, title, pubDate, tags, external } = Astro.props
+const { href, title, pubDate, tags, external, excerpt } = Astro.props
 
-const formattedDate = formatFullDate(pubDate)
+const externalHost = external ? new URL(external.url).host : undefined
 ---
 
-<article class="border-b border-gray-200 py-5 first:pt-0 last:border-b-0 group">
+<article class="border-t border-line-soft">
   <a
-    href={`${href}/`}
-    class="block no-underline"
-    target={external ? '_blank' : '_self'}
+    href={external ? href : `${href}/`}
+    target={external ? '_blank' : undefined}
+    rel={external ? 'noopener noreferrer' : undefined}
+    class="group grid gap-x-4 gap-y-1 py-5.5 sm:grid-cols-[64px_minmax(0,1fr)]"
   >
-    <div class="flex items-center justify-between gap-4 mb-2">
-      <div class="flex flex-wrap gap-1 items-center">
+    <time
+      datetime={pubDate.toISOString()}
+      class="text-sm/[26px] text-muted tabular-nums"
+    >
+      {formatMonthDay(pubDate)}
+    </time>
+    <div class="min-w-0">
+      <h3
+        class="text-[17px] leading-[1.55] font-[650] tracking-[-0.005em] text-ink transition-colors group-hover:text-accent-text"
+        style="font-feature-settings: 'palt'"
+      >
+        {title}
+      </h3>
+      {
+        excerpt && (
+          <p class="mt-1.5 line-clamp-2 text-sm leading-[1.75] tracking-[0.02em] text-muted">
+            {excerpt}
+          </p>
+        )
+      }
+      <div class="mt-2.5 flex flex-wrap items-center gap-1.5">
+        {tags.map(tag => <span class="tag">{tag}</span>)}
         {
-          tags.map(tag => (
-            <span class="text-[9px] tracking-widest uppercase text-gray-600 border border-gray-400 px-1.5 leading-relaxed">
-              {tag}
+          externalHost && (
+            <span class="ml-1 inline-flex items-center gap-1 text-xs text-muted">
+              {externalHost}
+              <span aria-hidden="true">↗</span>
             </span>
-          ))
+          )
         }
       </div>
-      <time
-        class="text-xs tracking-wider text-gray-500 shrink-0 transition-colors group-hover:text-gray-600"
-      >
-        {formattedDate}
-      </time>
     </div>
-    <h2
-      class="text-base font-normal text-gray-700 leading-normal transition-colors group-hover:text-black"
-    >
-      {title}
-      {external && <ExternalIcons platform={external.platform} />}
-    </h2>
   </a>
 </article>

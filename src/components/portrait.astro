@@ -11,23 +11,23 @@ const { size } = Astro.props
 const borderWidth = Math.max(1, Math.round(size * 0.025))
 ---
 
-<div
+<button
+  type="button"
   class="portrait-wrapper spinning"
   style={`--size: ${size}px; --border-width: ${borderWidth}px`}
-  transition:name="portrait"
-  role="button"
-  tabindex="0"
+  aria-label="ポートレートの回転を止める"
+  aria-pressed="false"
 >
   <Image
     src={portrait}
-    alt="Portrait"
+    alt=""
     width={size}
     height={size}
     class="rounded-full"
     fetchpriority="high"
     loading="eager"
   />
-</div>
+</button>
 
 <style>
   .portrait-wrapper {
@@ -41,12 +41,23 @@ const borderWidth = Math.max(1, Math.round(size * 0.025))
     transition: transform 0.2s ease;
   }
 
+  .portrait-wrapper:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
   .portrait-wrapper.spinning {
     animation: spin 3s linear infinite;
   }
 
   .portrait-wrapper.spinning.paused {
     animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .portrait-wrapper.spinning {
+      animation: none;
+    }
   }
 
   @keyframes spin {
@@ -69,19 +80,10 @@ const borderWidth = Math.max(1, Math.round(size * 0.025))
     const portraits = document.querySelectorAll('.portrait-wrapper')
 
     portraits.forEach(portrait => {
-      const handleClick = () => {
-        portrait.classList.toggle('paused')
-      }
-
-      const handleKeyPress = (e: KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault()
-          portrait.classList.toggle('paused')
-        }
-      }
-
-      portrait.addEventListener('click', handleClick)
-      portrait.addEventListener('keypress', handleKeyPress as EventListener)
+      portrait.addEventListener('click', () => {
+        const paused = portrait.classList.toggle('paused')
+        portrait.setAttribute('aria-pressed', String(paused))
+      })
     })
   })
 </script>

@@ -1,46 +1,45 @@
 ---
 import { talks } from '@/content/talks'
+import { formatFullDate } from '@/utils/date-util'
 ---
 
 {
   talks.length > 0 && (
-    <section class="mt-8">
-      <h2 class="text-2xl font-bold mb-4">登壇</h2>
-      <ul class="space-y-3">
+    <section>
+      <h2 class="section-title">登壇</h2>
+      <ul>
         {talks.map(talk => (
-          <li class="border-l-2 border-gray-300 pl-4">
-            <div class="flex flex-col gap-1">
-              <div class="text-sm text-gray-600">
-                {talk.date.toLocaleDateString('ja-JP', {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                })}
-              </div>
-              <div class="font-semibold">
-                <a
-                  href={talk.eventUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-blue-600 underline hover:text-blue-800"
-                >
-                  {talk.eventName}
-                </a>
-              </div>
-              <div class="text-gray-700">
+          <li class="grid gap-x-4 gap-y-1 border-t border-line-soft py-4.5 first:border-t-0 first:pt-0 sm:grid-cols-[96px_minmax(0,1fr)]">
+            <time
+              datetime={talk.date.toISOString()}
+              class="text-sm/[26px] text-muted tabular-nums"
+            >
+              {formatFullDate(talk.date)}
+            </time>
+            <div class="min-w-0">
+              <a
+                href={talk.eventUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="leading-[1.6] font-[650] text-ink transition-colors hover:text-accent-text"
+                style="font-feature-settings: 'palt'"
+              >
+                {talk.eventName}
+              </a>
+              <p class="mt-0.5 text-sm leading-[1.75] tracking-[0.02em] text-muted">
                 {talk.slideUrl ? (
                   <a
                     href={talk.slideUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-sm text-blue-500 hover:text-blue-700 hover:underline"
+                    class="text-link"
                   >
-                    📝 {talk.title}
+                    {talk.title}
                   </a>
                 ) : (
-                  <span class="text-sm text-gray-700">{talk.title}</span>
+                  talk.title
                 )}
-              </div>
+              </p>
             </div>
           </li>
         ))}
