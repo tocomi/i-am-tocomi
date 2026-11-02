@@ -1,5 +1,4 @@
 ---
-import ExternalArrow from '@/components/external-arrow.astro'
 import type { Blog } from '@/content/types'
 import { formatMonthDay } from '@/utils/date-util'
 
@@ -44,10 +43,7 @@ const externalHost = external ? new URL(external.url).host : undefined
         {tags.map(tag => <span class="tag">{tag}</span>)}
         {
           externalHost && (
-            <span class="ml-1 inline-flex items-center gap-1 text-xs text-muted">
-              {externalHost}
-              <ExternalArrow />
-            </span>
+            <span class="ml-1 text-xs text-muted">{externalHost}</span>
           )
         }
       </div>

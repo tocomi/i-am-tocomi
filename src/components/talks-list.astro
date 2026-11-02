@@ -1,10 +1,9 @@
 ---
 import { talks } from '@/content/talks'
-import ExternalArrow from '@/components/external-arrow.astro'
 import { formatFullDate } from '@/utils/date-util'
 
 const linkClass =
-  'inline-flex min-h-11 items-center gap-1 text-sm font-medium text-accent-text sm:min-h-7'
+  'text-link inline-flex min-h-11 items-center text-sm font-medium sm:min-h-7'
 ---
 
 {
@@ -40,8 +39,7 @@ const linkClass =
                     aria-label={`${talk.eventName} の詳細`}
                     class={linkClass}
                   >
-                    <span class="text-link">詳細</span>
-                    <ExternalArrow />
+                    詳細
                   </a>
                   {talk.slideUrl && (
                     <a
@@ -51,8 +49,7 @@ const linkClass =
                       aria-label={`${talk.title} の資料`}
                       class={linkClass}
                     >
-                      <span class="text-link">資料</span>
-                      <ExternalArrow />
+                      資料
                     </a>
                   )}
                 </div>
