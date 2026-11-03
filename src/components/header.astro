@@ -1,6 +1,5 @@
 ---
-import { Image } from 'astro:assets'
-import portrait from '@/assets/portrait.jpg'
+import Portrait from '@/components/portrait.astro'
 
 const currentPath = Astro.url.pathname
 const isHome = currentPath === '/'
@@ -20,25 +19,16 @@ const links = [
   <div
     class="mx-auto flex max-w-[808px] items-center justify-between gap-3 px-4 py-2 sm:px-6"
   >
-    <a
-      href="/"
-      class="inline-flex min-h-11 items-center gap-2.5 text-[17px] font-bold tracking-[-0.01em] text-ink"
-    >
-      {/* NOTE: Home では本文に大きいポートレートがあるので出さない。他のページへ移るとき、それがこのアイコンに縮む */}
-      {
-        !isHome && (
-          <Image
-            src={portrait}
-            alt=""
-            width={56}
-            height={56}
-            class="size-7 rounded-full object-cover"
-            transition:name="portrait"
-          />
-        )
-      }
-      tocomi
-    </a>
+    {/* NOTE: Home 以外では本文の大きいポートレートがヘッダーのポートレートに縮んで移る */}
+    {
+      isHome ? (
+        <span class="inline-flex min-h-11 items-center text-[17px] font-bold tracking-[-0.01em] text-ink">
+          tocomi
+        </span>
+      ) : (
+        <Portrait size={40} />
+      )
+    }
     <nav aria-label="メイン" class="-mr-2.5 flex items-center gap-1">
       {
         links.map(({ href, label, current }) => (
