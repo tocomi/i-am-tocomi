@@ -3,9 +3,18 @@ import { Image } from 'astro:assets'
 import portrait from '@/assets/portrait.jpg'
 
 const currentPath = Astro.url.pathname
+const isHome = currentPath === '/'
+
+const iconProps = {
+  src: portrait,
+  alt: '',
+  width: 56,
+  height: 56,
+  class: 'size-7 rounded-full object-cover',
+}
 
 const links = [
-  { href: '/', label: 'Home', current: currentPath === '/' },
+  { href: '/', label: 'Home', current: isHome },
   {
     href: '/about/',
     label: 'About',
@@ -23,13 +32,14 @@ const links = [
       href="/"
       class="inline-flex min-h-11 items-center gap-2.5 text-[17px] font-bold tracking-[-0.01em] text-ink"
     >
-      <Image
-        src={portrait}
-        alt=""
-        width={56}
-        height={56}
-        class="size-7 rounded-full object-cover"
-      />
+      {/* NOTE: Home では本文の大きいポートレートが transition:name="portrait" を持つので、名前が重ならないよう Home 以外でだけ付ける */}
+      {
+        isHome ? (
+          <Image {...iconProps} />
+        ) : (
+          <Image {...iconProps} transition:name="portrait" />
+        )
+      }
       tocomi
     </a>
     <nav aria-label="メイン" class="-mr-2.5 flex items-center gap-1">
