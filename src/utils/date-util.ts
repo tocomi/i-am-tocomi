@@ -5,3 +5,10 @@ export const formatFullDate = (date: Date) => {
     day: '2-digit',
   }).format(date)
 }
+
+export const formatMonthDay = (date: Date) => {
+  return new Intl.DateTimeFormat('ja-JP', {
+    month: '2-digit',
+    day: '2-digit',
+  }).format(date)
+}

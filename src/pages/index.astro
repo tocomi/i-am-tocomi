@@ -6,26 +6,27 @@ import SnsSection from '@/components/sns-section.astro'
 ---
 
 <Layout title="Home" ogpPath="home">
-  <div class="grid grid-cols-1 md:grid-cols-10 gap-4 items-center">
-    <div class="flex justify-center md:col-span-4">
-      <Portrait size={160} />
-    </div>
-    <div class="flex flex-col gap-2 md:col-span-6">
-      <section>
-        <h1 class="text-2xl font-bold">Kenta TSUNEMI</h1>
-        <h2 class="text-xl font-bold">@tocomi</h2>
-      </section>
-      <section>
-        <p>👨‍💻 Web Frontend Engineer</p>
-        <p>🏢 Techtouch, Inc.</p>
-        <p>🎪 TSKaigi スタッフ(2025, 2026, Sendai)</p>
-      </section>
-      <section>
-        <p>笑いの取れるエンジニアを目指しています🗿</p>
-      </section>
+  <section class="card flex flex-wrap items-center gap-x-9 gap-y-7">
+    <Portrait size={136} />
+    <div class="min-w-0 flex-[1_1_320px]">
+      <h1
+        class="text-2xl leading-[1.3] font-bold tracking-[-0.015em] text-ink sm:text-[28px]"
+      >
+        Kenta TSUNEMI
+      </h1>
+      <p class="mt-0.5 mb-3.5 text-[15px] font-medium text-muted">@tocomi</p>
+      <p class="text-[15px] leading-[1.8] tracking-[0.02em]">
+        Web Frontend Engineer at Techtouch, Inc.<br />
+        TSKaigi スタッフ(2025, 2026, Sendai)
+      </p>
+      <p
+        class="mt-2 mb-2 text-[15px] leading-[1.8] font-medium tracking-[0.02em] text-ink"
+      >
+        笑いの取れるエンジニアを目指しています🗿
+      </p>
       <SnsSection />
     </div>
-  </div>
+  </section>
 
   <TalksList />
 </Layout>
