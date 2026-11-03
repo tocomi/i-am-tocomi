@@ -5,14 +5,6 @@ import portrait from '@/assets/portrait.jpg'
 const currentPath = Astro.url.pathname
 const isHome = currentPath === '/'
 
-const iconProps = {
-  src: portrait,
-  alt: '',
-  width: 56,
-  height: 56,
-  class: 'size-7 rounded-full object-cover',
-}
-
 const links = [
   { href: '/', label: 'Home', current: isHome },
   {
@@ -32,12 +24,17 @@ const links = [
       href="/"
       class="inline-flex min-h-11 items-center gap-2.5 text-[17px] font-bold tracking-[-0.01em] text-ink"
     >
-      {/* NOTE: Home では本文の大きいポートレートが transition:name="portrait" を持つので、名前が重ならないよう Home 以外でだけ付ける */}
+      {/* NOTE: Home では本文に大きいポートレートがあるので出さない。他のページへ移るとき、それがこのアイコンに縮む */}
       {
-        isHome ? (
-          <Image {...iconProps} />
-        ) : (
-          <Image {...iconProps} transition:name="portrait" />
+        !isHome && (
+          <Image
+            src={portrait}
+            alt=""
+            width={56}
+            height={56}
+            class="size-7 rounded-full object-cover"
+            transition:name="portrait"
+          />
         )
       }
       tocomi
